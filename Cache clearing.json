@@ -15,20 +15,44 @@
           "type": "dashboard"
         },
         "type": "dashboard"
+      },
+      {
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "expr": "",
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "iconSize": 0,
+        "lineColor": "",
+        "name": "Annotations & Alerts",
+        "query": "",
+        "showLine": false,
+        "step": "",
+        "tagKeys": "",
+        "tagsField": "",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "textField": "",
+        "textFormat": "",
+        "titleFormat": "",
+        "type": "dashboard"
       }
     ]
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": null,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": null,
       "description": "Indicates that all caches are being flushed by a plugin. This is an operation which should not be triggered by external plugins and can lead to product slowdowns\n\nDetermine who invoked this, then reach out to the app vendor and flag this issue to them. ",
+      "editable": false,
+      "error": false,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -47,6 +71,9 @@
               "viz": false
             },
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": ""
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -75,7 +102,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": ""
         },
         "overrides": []
       },
@@ -86,6 +114,7 @@
         "y": 0
       },
       "id": 4,
+      "isNew": false,
       "options": {
         "legend": {
           "calcs": [],
@@ -96,11 +125,10 @@
           "mode": "single"
         }
       },
+      "span": 0,
       "targets": [
         {
-          "exemplar": true,
           "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cacheManager\",name=\"flushAll\",invokerPluginKey!=\"undefined\"}[5m])",
-          "interval": "",
           "legendFormat": "{{invokerPluginKey}}",
           "refId": "A"
         }
@@ -109,8 +137,9 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "description": "Indicates that a single cache has all of its entries removed. This may or may not cause slowdowns in products or plugins. \n\nCheck the frequency at which these cache removals occur and from which product. You can find out what plugin created the cache using the pluginKeyAtCreation tag. If excessive, consider reaching out to the app vendor and flag this issue to them. ",
+      "editable": false,
+      "error": false,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -129,6 +158,9 @@
               "viz": false
             },
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": ""
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -157,7 +189,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": ""
         },
         "overrides": []
       },
@@ -168,6 +201,7 @@
         "y": 0
       },
       "id": 5,
+      "isNew": false,
       "options": {
         "legend": {
           "calcs": [],
@@ -178,11 +212,10 @@
           "mode": "single"
         }
       },
+      "span": 0,
       "targets": [
         {
-          "exemplar": true,
           "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cache\",name=\"removeAll\",pluginKeyAtCreation!=\"undefined\"}[5m])",
-          "interval": "",
           "legendFormat": "{{pluginKeyAtCreation}}",
           "refId": "A"
         }
@@ -191,8 +224,9 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "description": "Measure how many times a plugin has been disabled since uptime.\n\nSome caches are cleared when plugin is disabled/ enabled and may have performance impact. If you see high counts, check the UPM or application logs to investigate which plugin is contributing to high counts.",
+      "editable": false,
+      "error": false,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -211,6 +245,9 @@
               "viz": false
             },
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": ""
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -239,7 +276,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": ""
         },
         "overrides": []
       },
@@ -250,6 +288,7 @@
         "y": 8
       },
       "id": 2,
+      "isNew": false,
       "options": {
         "legend": {
           "calcs": [],
@@ -260,19 +299,15 @@
           "mode": "single"
         }
       },
+      "span": 0,
       "targets": [
         {
-          "exemplar": true,
           "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"plugin\",name=\"counter\",category01=\"enabled\"})",
-          "interval": "",
           "legendFormat": "enabled",
           "refId": "A"
         },
         {
-          "exemplar": true,
           "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"plugin\",name=\"counter\",category01=\"disabled\"})",
-          "hide": false,
-          "interval": "",
           "legendFormat": "disabled",
           "refId": "B"
         }
@@ -281,8 +316,9 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "description": "Indicates that a single entry in a cache has been reset. This may or may not cause slowdowns in products or plugins. \n\nCheck the frequency at which these cache resets occur and from which product. You can find out what plugin created the cache using the pluginKeyAtCreation tag. If excessive, consider reaching out to the app vendor and flag this issue to them. ",
+      "editable": false,
+      "error": false,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -301,6 +337,9 @@
               "viz": false
             },
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": ""
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -329,7 +368,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": ""
         },
         "overrides": []
       },
@@ -340,6 +380,7 @@
         "y": 8
       },
       "id": 6,
+      "isNew": false,
       "options": {
         "legend": {
           "calcs": [],
@@ -350,11 +391,10 @@
           "mode": "single"
         }
       },
+      "span": 0,
       "targets": [
         {
-          "exemplar": true,
           "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cachedReference\",name=\"reset\",pluginKeyAtCreation!=\"undefined\"}[5m])",
-          "interval": "",
           "legendFormat": "{{pluginKeyAtCreation}}",
           "refId": "A"
         }
@@ -364,7 +404,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 32,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -378,5 +418,6 @@
   "timezone": "",
   "title": "Cache clearing",
   "uid": "bi4AbQtnk",
-  "version": 5
+  "version": 13,
+  "weekStart": ""
 }
