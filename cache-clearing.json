@@ -9,10 +9,10 @@
     "url": "/d/bi4AbQtnk/cache-clearing",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:21Z",
-    "updated": "2022-03-10T00:59:52Z",
-    "updatedBy": "Anonymous",
+    "updated": "2022-03-10T22:52:09Z",
+    "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 26,
+    "version": 27,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -26,6 +26,21 @@
     "annotations": {
       "list": [
         {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        },
+        {
           "datasource": "-- Grafana --",
           "enable": true,
           "expr": "",
@@ -37,8 +52,13 @@
           "showLine": false,
           "step": "",
           "tagKeys": "",
-          "tags": null,
           "tagsField": "",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
           "textField": "",
           "textFormat": "",
           "titleFormat": "",
@@ -47,10 +67,11 @@
       ]
     },
     "editable": true,
-    "hideControls": false,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
     "id": 3,
     "links": [],
-    "originalTitle": "",
+    "liveNow": false,
     "panels": [
       {
         "description": "Indicates that all caches are being flushed by a plugin. This is an operation which should not be triggered by external plugins and can lead to product slowdowns\n\nDetermine who invoked this, then reach out to the app vendor and flag this issue to them. ",
@@ -62,6 +83,7 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
               "drawStyle": "line",
@@ -91,6 +113,7 @@
                 "mode": "off"
               }
             },
+            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -105,7 +128,8 @@
               ]
             },
             "unit": ""
-          }
+          },
+          "overrides": []
         },
         "gridPos": {
           "h": 8,
@@ -134,7 +158,6 @@
           }
         ],
         "title": "flush all events",
-        "transparent": false,
         "type": "timeseries"
       },
       {
@@ -147,6 +170,7 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
               "drawStyle": "line",
@@ -176,6 +200,7 @@
                 "mode": "off"
               }
             },
+            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -190,7 +215,8 @@
               ]
             },
             "unit": ""
-          }
+          },
+          "overrides": []
         },
         "gridPos": {
           "h": 8,
@@ -213,13 +239,18 @@
         "span": 0,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": true,
             "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cache\",name=\"removeAll\",pluginKeyAtCreation!=\"undefined\"}[5m])",
-            "legendFormat": "{{pluginKeyAtCreation}}",
+            "interval": "",
+            "legendFormat": "{{tag_pluginKeyAtCreation}}",
             "refId": "A"
           }
         ],
         "title": "remove all events",
-        "transparent": false,
         "type": "timeseries"
       },
       {
@@ -232,6 +263,7 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
               "drawStyle": "line",
@@ -261,6 +293,7 @@
                 "mode": "off"
               }
             },
+            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -275,7 +308,8 @@
               ]
             },
             "unit": ""
-          }
+          },
+          "overrides": []
         },
         "gridPos": {
           "h": 8,
@@ -309,7 +343,6 @@
           }
         ],
         "title": "plugin enabled/disabled events",
-        "transparent": false,
         "type": "timeseries"
       },
       {
@@ -322,6 +355,7 @@
               "mode": "palette-classic"
             },
             "custom": {
+              "axisLabel": "",
               "axisPlacement": "auto",
               "barAlignment": 0,
               "drawStyle": "line",
@@ -351,6 +385,7 @@
                 "mode": "off"
               }
             },
+            "mappings": [],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -365,7 +400,33 @@
               ]
             },
             "unit": ""
-          }
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "{category00=\"cachedReference\", instance=\"node-1\", job=\"Bulldog\", name=\"reset\", tag_className=\"com.atlassian.cache.ehcache.DelegatingCachedReference\", tag_pluginKeyAtCreation=\"com.atlassian.jira.plugins.jira-bitbucket-connector-plugin\"}"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
           "h": 8,
@@ -388,21 +449,23 @@
         "span": 0,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": true,
             "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cachedReference\",name=\"reset\",pluginKeyAtCreation!=\"undefined\"}[5m])",
-            "legendFormat": "{{pluginKeyAtCreation}}",
+            "interval": "",
+            "legendFormat": "{{tag_pluginKeyAtCreation}}",
             "refId": "A"
           }
         ],
         "title": "reset events",
-        "transparent": false,
         "type": "timeseries"
       }
     ],
     "refresh": "10s",
-    "rows": null,
-    "schemaVersion": 32,
-    "sharedCrosshair": false,
-    "slug": "",
+    "schemaVersion": 34,
     "style": "dark",
     "tags": [],
     "templating": {
@@ -412,13 +475,11 @@
       "from": "now-1h",
       "to": "now"
     },
-    "timepicker": {
-      "refresh_intervals": null,
-      "time_options": null
-    },
+    "timepicker": {},
     "timezone": "",
     "title": "Cache clearing",
     "uid": "bi4AbQtnk",
-    "version": 26
+    "version": 27,
+    "weekStart": ""
   }
 }
