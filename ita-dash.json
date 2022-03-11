@@ -9,10 +9,10 @@
     "url": "/d/IeEDnNp7z/ita-dash",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:52Z",
-    "updated": "2022-03-10T00:59:52Z",
-    "updatedBy": "Anonymous",
+    "updated": "2022-03-11T05:32:51Z",
+    "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 31,
+    "version": 33,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -665,8 +665,14 @@
         "span": 0,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": true,
             "expr": "(java_lang_OperatingSystem_ProcessCpuLoad * 1000)",
-            "legendFormat": "cpu load",
+            "interval": "",
+            "legendFormat": "cpu load - {{instance}}",
             "refId": "A"
           }
         ],
@@ -799,8 +805,14 @@
         "span": 0,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": true,
             "expr": "100*(jvm_memory_bytes_used{area=\"heap\"}/jvm_memory_bytes_max{area=\"heap\"})",
-            "legendFormat": "Used {{ area }}",
+            "interval": "",
+            "legendFormat": "Used {{ area }} - {{instance}}",
             "refId": "A"
           }
         ],
@@ -1220,8 +1232,14 @@
         "span": 0,
         "targets": [
           {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": true,
             "expr": "( Catalina_ThreadPool_currentThreadCount / Catalina_ThreadPool_maxThreads) * 100",
-            "legendFormat": "used",
+            "interval": "",
+            "legendFormat": "used - {{instance}} ({{name}})",
             "refId": "A"
           }
         ],
@@ -1794,7 +1812,7 @@
     "timezone": "",
     "title": "ITA Dash",
     "uid": "IeEDnNp7z",
-    "version": 31,
+    "version": 33,
     "weekStart": ""
   }
 }
