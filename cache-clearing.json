@@ -1,0 +1,485 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "cache-clearing",
+    "url": "/d/bi4AbQtnk/cache-clearing",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2022-03-08T10:04:21Z",
+    "updated": "2022-03-10T22:52:09Z",
+    "updatedBy": "admin",
+    "createdBy": "admin",
+    "version": 27,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        },
+        {
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "expr": "",
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "iconSize": 0,
+          "lineColor": "",
+          "name": "Annotations & Alerts",
+          "query": "",
+          "showLine": false,
+          "step": "",
+          "tagKeys": "",
+          "tagsField": "",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "textField": "",
+          "textFormat": "",
+          "titleFormat": "",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 3,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "description": "Indicates that all caches are being flushed by a plugin. This is an operation which should not be triggered by external plugins and can lead to product slowdowns\n\nDetermine who invoked this, then reach out to the app vendor and flag this issue to them. ",
+        "editable": false,
+        "error": false,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 5,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": ""
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": ""
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 4,
+        "isNew": false,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "span": 0,
+        "targets": [
+          {
+            "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cacheManager\",name=\"flushAll\",invokerPluginKey!=\"undefined\"}[5m])",
+            "legendFormat": "{{invokerPluginKey}}",
+            "refId": "A"
+          }
+        ],
+        "title": "flush all events",
+        "type": "timeseries"
+      },
+      {
+        "description": "Indicates that a single cache has all of its entries removed. This may or may not cause slowdowns in products or plugins. \n\nCheck the frequency at which these cache removals occur and from which product. You can find out what plugin created the cache using the pluginKeyAtCreation tag. If excessive, consider reaching out to the app vendor and flag this issue to them. ",
+        "editable": false,
+        "error": false,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 5,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": ""
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": ""
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 5,
+        "isNew": false,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "span": 0,
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": true,
+            "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cache\",name=\"removeAll\",pluginKeyAtCreation!=\"undefined\"}[5m])",
+            "interval": "",
+            "legendFormat": "{{tag_pluginKeyAtCreation}}",
+            "refId": "A"
+          }
+        ],
+        "title": "remove all events",
+        "type": "timeseries"
+      },
+      {
+        "description": "Measure how many times a plugin has been disabled since uptime.\n\nSome caches are cleared when plugin is disabled/ enabled and may have performance impact. If you see high counts, check the UPM or application logs to investigate which plugin is contributing to high counts.",
+        "editable": false,
+        "error": false,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 5,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": ""
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": ""
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        },
+        "id": 2,
+        "isNew": false,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "span": 0,
+        "targets": [
+          {
+            "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"plugin\",name=\"counter\",category01=\"enabled\"})",
+            "legendFormat": "enabled",
+            "refId": "A"
+          },
+          {
+            "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"plugin\",name=\"counter\",category01=\"disabled\"})",
+            "legendFormat": "disabled",
+            "refId": "B"
+          }
+        ],
+        "title": "plugin enabled/disabled events",
+        "type": "timeseries"
+      },
+      {
+        "description": "Indicates that a single entry in a cache has been reset. This may or may not cause slowdowns in products or plugins. \n\nCheck the frequency at which these cache resets occur and from which product. You can find out what plugin created the cache using the pluginKeyAtCreation tag. If excessive, consider reaching out to the app vendor and flag this issue to them. ",
+        "editable": false,
+        "error": false,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 5,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": ""
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": ""
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "{category00=\"cachedReference\", instance=\"node-1\", job=\"Bulldog\", name=\"reset\", tag_className=\"com.atlassian.cache.ehcache.DelegatingCachedReference\", tag_pluginKeyAtCreation=\"com.atlassian.jira.plugins.jira-bitbucket-connector-plugin\"}"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 8
+        },
+        "id": 6,
+        "isNew": false,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "span": 0,
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": true,
+            "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cachedReference\",name=\"reset\",pluginKeyAtCreation!=\"undefined\"}[5m])",
+            "interval": "",
+            "legendFormat": "{{tag_pluginKeyAtCreation}}",
+            "refId": "A"
+          }
+        ],
+        "title": "reset events",
+        "type": "timeseries"
+      }
+    ],
+    "refresh": "10s",
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Cache clearing",
+    "uid": "bi4AbQtnk",
+    "version": 27,
+    "weekStart": ""
+  }
+}
