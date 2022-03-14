@@ -9,10 +9,10 @@
     "url": "/d/dq5VGx2nz/cluster-locks",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:34Z",
-    "updated": "2022-03-10T00:59:52Z",
-    "updatedBy": "Anonymous",
+    "updated": "2022-03-14T05:16:06Z",
+    "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 28,
+    "version": 29,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -222,9 +222,9 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": true,
-            "expr": "topk(5, sum without(instance,implementation) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_pluginKeyAtCreation!=\"undefined\",tag_statistic=\"active\"}))",
+            "expr": "topk(10, sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_pluginKeyAtCreation!=\"undefined\",tag_statistic=\"active\"}))",
             "interval": "",
-            "legendFormat": "{{tag_pluginKeyAtCreation}} - {{tag_lockName}} (lock name)",
+            "legendFormat": "{{tag_pluginKeyAtCreation}} ",
             "refId": "A"
           }
         ],
@@ -380,9 +380,9 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": true,
-            "expr": "topk(5, sum without(instance,implementation) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"waited\",tag_statistic=\"active\",tag_pluginKeyAtCreation!=\"undefined\"}))",
+            "expr": "topk(10, sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"waited\",tag_statistic=\"active\",tag_pluginKeyAtCreation!=\"undefined\"}))",
             "interval": "",
-            "legendFormat": "{{tag_pluginKeyAtCreation}} - {{tag_lockName}} (lock name)",
+            "legendFormat": "{{tag_pluginKeyAtCreation}}",
             "refId": "A"
           }
         ],
@@ -404,7 +404,7 @@
     "timezone": "",
     "title": "Cluster Locks",
     "uid": "dq5VGx2nz",
-    "version": 28,
+    "version": 29,
     "weekStart": ""
   }
 }

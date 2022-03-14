@@ -9,10 +9,10 @@
     "url": "/d/IeEDnNp7z/ita-dash",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:52Z",
-    "updated": "2022-03-11T05:32:51Z",
+    "updated": "2022-03-14T04:43:38Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 33,
+    "version": 34,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -81,7 +81,23 @@
         "error": false,
         "fieldConfig": {
           "defaults": {
-            "mappings": [],
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "color": "red",
+                    "index": 1,
+                    "text": "DOWN"
+                  },
+                  "1": {
+                    "color": "green",
+                    "index": 0,
+                    "text": "UP"
+                  }
+                },
+                "type": "value"
+              }
+            ],
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -1812,7 +1828,7 @@
     "timezone": "",
     "title": "ITA Dash",
     "uid": "IeEDnNp7z",
-    "version": 33,
+    "version": 34,
     "weekStart": ""
   }
 }
