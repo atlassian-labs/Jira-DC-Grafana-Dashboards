@@ -9,10 +9,10 @@
     "url": "/d/dq5VGx2nz/cluster-locks",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:34Z",
-    "updated": "2022-03-14T10:02:45Z",
+    "updated": "2022-03-14T20:49:23Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 31,
+    "version": 32,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -259,7 +259,32 @@
             },
             "unit": ""
           },
-          "overrides": []
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "com.atlassian.jira.jira-email-processor-plugin "
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
           "h": 9,
@@ -415,7 +440,44 @@
               ]
             }
           },
-          "overrides": []
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "lock name"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 244
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Count"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 104
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "plugin key"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 432
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
           "h": 9,
@@ -443,7 +505,7 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": false,
-            "expr": "topk(500, avg without (instance, tag_implementation) (com_atlassian_jira_metrics_Mean{category00=\"cluster\",category01=\"lock\",category02=\"held\"}))",
+            "expr": "topk(500, avg without (instance, tag_implementation, tag_lockName) (com_atlassian_jira_metrics_Mean{category00=\"cluster\",category01=\"lock\",category02=\"held\"}))",
             "format": "table",
             "instant": true,
             "interval": "",
@@ -456,7 +518,7 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": false,
-            "expr": "topk(500, avg without (instance, tag_implementation) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"held\"}))",
+            "expr": "topk(500, avg without (instance, tag_implementation, tag_lockName) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"held\"}))",
             "format": "table",
             "hide": false,
             "instant": true,
@@ -470,7 +532,7 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": false,
-            "expr": "topk(500, avg without (instance, tag_implementation) (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"held\"}))",
+            "expr": "topk(500, avg without (instance, tag_implementation, tag_lockName) (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"held\"}))",
             "format": "table",
             "hide": false,
             "instant": true,
@@ -494,7 +556,8 @@
                 "category01": true,
                 "category02": true,
                 "job": true,
-                "name": true
+                "name": true,
+                "tag_lockName": true
               },
               "indexByName": {},
               "renameByName": {
@@ -535,7 +598,32 @@
               ]
             }
           },
-          "overrides": []
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "plugin key"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 401
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Count"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 123
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
           "h": 9,
@@ -563,7 +651,7 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": false,
-            "expr": "topk(500, avg without (instance, tag_implementation) (com_atlassian_jira_metrics_Mean{category00=\"cluster\",category01=\"lock\",category02=\"waited\"}))",
+            "expr": "topk(500, avg without (instance, tag_implementation, tag_lockName) (com_atlassian_jira_metrics_Mean{category00=\"cluster\",category01=\"lock\",category02=\"waited\"}))",
             "format": "table",
             "instant": true,
             "interval": "",
@@ -576,7 +664,7 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": false,
-            "expr": "topk(500, avg without (instance, tag_implementation) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"waited\"}))",
+            "expr": "topk(500, avg without (instance, tag_implementation, tag_lockName) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"waited\"}))",
             "format": "table",
             "hide": false,
             "instant": true,
@@ -590,7 +678,7 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": false,
-            "expr": "topk(500, avg without (instance, tag_implementation) (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"waited\"}))",
+            "expr": "topk(500, avg without (instance, tag_implementation, tag_lockName) (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"waited\"}))",
             "format": "table",
             "hide": false,
             "instant": true,
@@ -614,7 +702,8 @@
                 "category01": true,
                 "category02": true,
                 "job": true,
-                "name": true
+                "name": true,
+                "tag_pluginKeyAtCreation": false
               },
               "indexByName": {},
               "renameByName": {
@@ -644,7 +733,7 @@
     "timezone": "",
     "title": "Cluster Locks",
     "uid": "dq5VGx2nz",
-    "version": 31,
+    "version": 32,
     "weekStart": ""
   }
 }
