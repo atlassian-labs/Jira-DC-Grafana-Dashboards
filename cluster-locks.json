@@ -9,10 +9,10 @@
     "url": "/d/dq5VGx2nz/cluster-locks",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:34Z",
-    "updated": "2022-03-16T04:42:02Z",
+    "updated": "2022-03-17T02:52:28Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 39,
+    "version": 40,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -259,32 +259,7 @@
             },
             "unit": ""
           },
-          "overrides": [
-            {
-              "__systemRef": "hideSeriesFrom",
-              "matcher": {
-                "id": "byNames",
-                "options": {
-                  "mode": "exclude",
-                  "names": [
-                    "com.atlassian.jira.jira-email-processor-plugin "
-                  ],
-                  "prefix": "All except:",
-                  "readOnly": true
-                }
-              },
-              "properties": [
-                {
-                  "id": "custom.hideFrom",
-                  "value": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": true
-                  }
-                }
-              ]
-            }
-          ]
+          "overrides": []
         },
         "gridPos": {
           "h": 9,
@@ -785,7 +760,7 @@
     "timezone": "",
     "title": "Cluster Locks",
     "uid": "dq5VGx2nz",
-    "version": 39,
+    "version": 40,
     "weekStart": ""
   }
 }
