@@ -9,10 +9,10 @@
     "url": "/d/IeEDnNp7z/ita-dash",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:52Z",
-    "updated": "2022-03-14T04:43:38Z",
+    "updated": "2022-03-17T01:05:00Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 34,
+    "version": 35,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -1102,7 +1102,7 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": true,
-            "expr": "increase(Catalina_GlobalRequestProcessor_requestCount{}[1m])",
+            "expr": "increase(Catalina_GlobalRequestProcessor_requestCount{}[10m])",
             "interval": "",
             "legendFormat": "{{name}} count - {{instance}}",
             "refId": "A"
@@ -1113,7 +1113,7 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": true,
-            "expr": "increase(Catalina_GlobalRequestProcessor_errorCount{}[1m])",
+            "expr": "increase(Catalina_GlobalRequestProcessor_errorCount{}[10m])",
             "interval": "",
             "legendFormat": "{{name}} error - {{instance}}",
             "refId": "B"
@@ -1345,7 +1345,7 @@
               "uid": "u5eohEYnz"
             },
             "exemplar": true,
-            "expr": "increase(Catalina_GlobalRequestProcessor_processingTime{}[1m]) / increase(Catalina_GlobalRequestProcessor_requestCount{}[1m])",
+            "expr": "increase(Catalina_GlobalRequestProcessor_processingTime{}[10m]) / increase(Catalina_GlobalRequestProcessor_requestCount{}[10m])",
             "interval": "",
             "legendFormat": "{{name}} - {{instance}}",
             "refId": "A"
@@ -1828,7 +1828,7 @@
     "timezone": "",
     "title": "ITA Dash",
     "uid": "IeEDnNp7z",
-    "version": 34,
+    "version": 35,
     "weekStart": ""
   }
 }
