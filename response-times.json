@@ -9,10 +9,10 @@
     "url": "/d/dA8tm85nz/response-times",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:05:01Z",
-    "updated": "2022-03-10T00:59:52Z",
-    "updatedBy": "Anonymous",
+    "updated": "2022-03-21T00:08:08Z",
+    "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 28,
+    "version": 29,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -1262,7 +1262,27 @@
     "style": "dark",
     "tags": [],
     "templating": {
-      "list": []
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "Blitz",
+            "value": "Blitz"
+          },
+          "description": "Choose the data source to apply to this dashboard",
+          "hide": 0,
+          "includeAll": false,
+          "label": "Datasource",
+          "multi": false,
+          "name": "query0",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        }
+      ]
     },
     "time": {
       "from": "now-1h",
@@ -1272,7 +1292,7 @@
     "timezone": "",
     "title": "Response times",
     "uid": "dA8tm85nz",
-    "version": 28,
+    "version": 29,
     "weekStart": ""
   }
 }
