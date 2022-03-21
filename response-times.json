@@ -9,10 +9,10 @@
     "url": "/d/dA8tm85nz/response-times",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:05:01Z",
-    "updated": "2022-03-21T02:48:45Z",
+    "updated": "2022-03-21T04:23:11Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 31,
+    "version": 34,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -70,7 +70,7 @@
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
     "id": 7,
-    "iteration": 1647829877320,
+    "iteration": 1647836480990,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -278,21 +278,136 @@
         "type": "timeseries"
       },
       {
-        "collapsed": false,
-        "editable": false,
-        "error": false,
+        "description": "Measures how long a Soy Template web panel is taking to render.\n\nThe template renderer might be long-running. If there is a plugin with a slow Soy renderer it might be worth adding (tag__templateName) to the query and contacting the vendor responsible to investigate if long-running queries are expected.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
         "gridPos": {
-          "h": 1,
-          "w": 24,
+          "h": 18,
+          "w": 12,
           "x": 0,
           "y": 10
         },
-        "id": 12,
-        "isNew": false,
-        "panels": [],
-        "span": 0,
-        "title": "Web panel render times",
-        "type": "row"
+        "id": 25,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Number of calls"
+            }
+          ]
+        },
+        "pluginVersion": "8.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": false,
+            "expr": "topk(500, sum without (instance, tag_templateName) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) )",
+            "format": "table",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": false,
+            "expr": "sum without (instance, tag_templateName) (com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "u5eohEYnz"
+            },
+            "exemplar": false,
+            "expr": "sum without (instance, tag_templateName) (com_atlassian_jira_metrics_99thPercentile{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "C"
+          }
+        ],
+        "title": "Soy Web Panel Response Times (cluster-wide)",
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "job": true,
+                "name": true,
+                "tag_templateRenderer": true
+              },
+              "indexByName": {
+                "Time": 0,
+                "Value #A": 5,
+                "Value #B": 6,
+                "Value #C": 7,
+                "job": 1,
+                "name": 2,
+                "tag_fromPluginKey": 4,
+                "tag_templateRenderer": 3
+              },
+              "renameByName": {
+                "Value #A": "AVG response time (ms)",
+                "Value #B": "Number of calls",
+                "Value #C": "99th response time (ms)",
+                "tag_fromPluginKey": "Plugin key",
+                "tag_templateName": ""
+              }
+            }
+          }
+        ],
+        "type": "table"
       },
       {
         "description": "Measures how long a Soy Template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
@@ -355,8 +470,8 @@
         "gridPos": {
           "h": 9,
           "w": 12,
-          "x": 0,
-          "y": 11
+          "x": 12,
+          "y": 10
         },
         "id": 3,
         "isNew": false,
@@ -449,7 +564,7 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 11
+          "y": 19
         },
         "id": 18,
         "isNew": false,
@@ -479,6 +594,23 @@
         ],
         "title": "soy web panel response time (p99 - per node) ",
         "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "editable": false,
+        "error": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 28
+        },
+        "id": 12,
+        "isNew": false,
+        "panels": [],
+        "span": 0,
+        "title": "Web panel render times",
+        "type": "row"
       },
       {
         "description": "Measures how long an Atlassian Template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
@@ -542,7 +674,7 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 20
+          "y": 29
         },
         "id": 13,
         "isNew": false,
@@ -635,7 +767,7 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 20
+          "y": 29
         },
         "id": 14,
         "isNew": false,
@@ -674,7 +806,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 29
+          "y": 38
         },
         "id": 10,
         "isNew": false,
@@ -745,7 +877,7 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 30
+          "y": 39
         },
         "id": 5,
         "isNew": false,
@@ -838,7 +970,7 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 30
+          "y": 39
         },
         "id": 19,
         "isNew": false,
@@ -877,7 +1009,7 @@
           "h": 1,
           "w": 24,
           "x": 0,
-          "y": 39
+          "y": 48
         },
         "id": 21,
         "isNew": false,
@@ -948,7 +1080,7 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 40
+          "y": 49
         },
         "id": 22,
         "isNew": false,
@@ -1041,7 +1173,7 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 40
+          "y": 49
         },
         "id": 23,
         "isNew": false,
@@ -1109,7 +1241,7 @@
     "timezone": "",
     "title": "Response times",
     "uid": "dA8tm85nz",
-    "version": 31,
+    "version": 34,
     "weekStart": ""
   }
 }
