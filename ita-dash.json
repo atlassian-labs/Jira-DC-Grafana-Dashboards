@@ -376,7 +376,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "java_lang_OperatingSystem_AvailableProcessors{instance=\"localhost:2991\"}",
+          "expr": "java_lang_OperatingSystem_AvailableProcessors{product=\"jira\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -1033,7 +1033,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "increase(Catalina_GlobalRequestProcessor_requestCount{instance=~\"10.226.27.21:8099|10.226.29.166:8099\"}[10m])",
+          "expr": "increase(Catalina_GlobalRequestProcessor_requestCount[10m])",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}} count ({{instance}})",
@@ -1045,7 +1045,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "increase(Catalina_GlobalRequestProcessor_errorCount{instance=~\"10.226.27.21:8099|10.226.29.166:8099\"}[10m])",
+          "expr": "increase(Catalina_GlobalRequestProcessor_errorCount[10m])",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}} error ({{instance}})",
@@ -1176,7 +1176,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "(Catalina_ThreadPool_currentThreadsBusy{instance=~\"10.226.27.21:8099|10.226.29.166:8099\"} / Catalina_ThreadPool_maxThreads{instance=~\"10.226.27.21:8099|10.226.29.166:8099\"}) * 100",
+          "expr": "(Catalina_ThreadPool_currentThreadsBusy / Catalina_ThreadPool_maxThreads) * 100",
           "hide": false,
           "interval": "",
           "legendFormat": "used {{name}} ({{instance}})",
@@ -1271,7 +1271,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "increase(Catalina_GlobalRequestProcessor_processingTime{instance=~\"10.226.27.21:8099|10.226.29.166:8099\"}[10m]) / increase(Catalina_GlobalRequestProcessor_requestCount{instance=~\"10.226.27.21:8099|10.226.29.166:8099\"}[10m])",
+          "expr": "increase(Catalina_GlobalRequestProcessor_processingTime[10m]) / increase(Catalina_GlobalRequestProcessor_requestCount[10m])",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}} ({{instance}})",
@@ -1366,7 +1366,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "Catalina_Manager_activeSessions{instance=~\"10.226.27.21:8099|10.226.29.166:8099\"}",
+          "expr": "Catalina_Manager_activeSessions",
           "hide": false,
           "interval": "",
           "legendFormat": "active sessions: {{instance}}",
@@ -1378,7 +1378,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "Catalina_Manager_rejectedSessions{instance=~\"10.226.27.21:8099|10.226.29.166:8099\"}",
+          "expr": "Catalina_Manager_rejectedSessions",
           "hide": false,
           "interval": "",
           "legendFormat": "rejected sessions: {{instance}}",
@@ -1518,7 +1518,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "(com_atlassian_jira_BasicDataSource_NumActive{instance=~\"10.226.27.21:8099|10.226.29.166:8099\",connectionpool=\"connections\"} / com_atlassian_jira_BasicDataSource_MaxTotal{instance=~\"10.226.27.21:8099|10.226.29.166:8099\",connectionpool=\"connections\"}) * 100",
+          "expr": "(com_atlassian_jira_BasicDataSource_NumActive{connectionpool=\"connections\"} / com_atlassian_jira_BasicDataSource_MaxTotal{connectionpool=\"connections\"}) * 100",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -1612,7 +1612,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "com_atlassian_jira_BasicDataSource_NumActive{instance=~\"10.226.27.21:8099|10.226.29.166:8099\",connectionpool=\"connections\"}",
+          "expr": "com_atlassian_jira_BasicDataSource_NumActive{connectionpool=\"connections\"}",
           "interval": "",
           "legendFormat": "active ({{instance}})",
           "refId": "A"
@@ -1623,7 +1623,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "com_atlassian_jira_BasicDataSource_NumIdle{instance=~\"10.226.27.21:8099|10.226.29.166:8099\",connectionpool=\"connections\"}",
+          "expr": "com_atlassian_jira_BasicDataSource_NumIdle{connectionpool=\"connections\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "idle ({{instance}})",
