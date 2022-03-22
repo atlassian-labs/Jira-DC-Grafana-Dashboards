@@ -9,10 +9,10 @@
     "url": "/d/IeEDnNp7z/ita-dash",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:52Z",
-    "updated": "2022-03-17T01:05:00Z",
+    "updated": "2022-03-22T02:24:59Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 35,
+    "version": 36,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -1818,7 +1818,26 @@
     "style": "dark",
     "tags": [],
     "templating": {
-      "list": []
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "Blitz",
+            "value": "Blitz"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "label": "Datasource",
+          "multi": false,
+          "name": "query0",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        }
+      ]
     },
     "time": {
       "from": "now-30m",
@@ -1828,7 +1847,7 @@
     "timezone": "",
     "title": "ITA Dash",
     "uid": "IeEDnNp7z",
-    "version": 35,
+    "version": 36,
     "weekStart": ""
   }
 }
