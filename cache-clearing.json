@@ -9,10 +9,10 @@
     "url": "/d/bi4AbQtnk/cache-clearing",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:21Z",
-    "updated": "2022-03-21T23:38:50Z",
+    "updated": "2022-03-22T04:19:45Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 31,
+    "version": 33,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -70,11 +70,15 @@
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
     "id": 3,
-    "iteration": 1647905909211,
+    "iteration": 1647922726649,
     "links": [],
     "liveNow": false,
     "panels": [
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${query0}"
+        },
         "description": "Indicates that all caches are being flushed by a plugin. This is an operation which should not be triggered by external plugins and can lead to product slowdowns\n\nDetermine who invoked this, then reach out to the app vendor and flag this issue to them. ",
         "editable": false,
         "error": false,
@@ -155,7 +159,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "u5eohEYnz"
+              "uid": "${query0}"
             },
             "exemplar": true,
             "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cacheManager\",name=\"flushAll\",invokerPluginKey!=\"undefined\"}[5m])",
@@ -168,6 +172,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${query0}"
+        },
         "description": "Indicates that a single cache has all of its entries removed. This may or may not cause slowdowns in products or plugins. \n\nCheck the frequency at which these cache removals occur and from which product. You can find out what plugin created the cache using the pluginKeyAtCreation tag. If excessive, consider reaching out to the app vendor and flag this issue to them. ",
         "editable": false,
         "error": false,
@@ -248,7 +256,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "u5eohEYnz"
+              "uid": "${query0}"
             },
             "exemplar": true,
             "expr": "sum by (tag_pluginKeyAtCreation) (rate(com_atlassian_jira_metrics_Count{category00=\"cache\",name=\"removeAll\",pluginKeyAtCreation!=\"undefined\"}[5m]))",
@@ -261,6 +269,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${query0}"
+        },
         "description": "Measure how many times a plugin has been disabled since uptime.\n\nSome caches are cleared when plugin is disabled/ enabled and may have performance impact. If you see high counts, check the UPM or application logs to investigate which plugin is contributing to high counts.",
         "editable": false,
         "error": false,
@@ -342,7 +354,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "u5eohEYnz"
+              "uid": "${query0}"
             },
             "exemplar": true,
             "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"plugin\",name=\"counter\",category01=\"enabled\"})",
@@ -357,7 +369,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "u5eohEYnz"
+              "uid": "${query0}"
             },
             "exemplar": true,
             "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"plugin\",name=\"counter\",category01=\"disabled\"})",
@@ -372,6 +384,10 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${query0}"
+        },
         "description": "Indicates that a single entry in a cache has been reset. This may or may not cause slowdowns in products or plugins. \n\nCheck the frequency at which these cache resets occur and from which product. You can find out what plugin created the cache using the pluginKeyAtCreation tag. If excessive, consider reaching out to the app vendor and flag this issue to them. ",
         "editable": false,
         "error": false,
@@ -452,7 +468,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "u5eohEYnz"
+              "uid": "${query0}"
             },
             "exemplar": true,
             "expr": "sum by (tag_pluginKeyAtCreation) (rate(com_atlassian_jira_metrics_Count{category00=\"cachedReference\",name=\"reset\",pluginKeyAtCreation!=\"undefined\"}[5m]))",
@@ -484,6 +500,7 @@
           "name": "query0",
           "options": [],
           "query": "prometheus",
+          "queryValue": "",
           "refresh": 1,
           "regex": "",
           "skipUrlSync": false,
@@ -499,7 +516,7 @@
     "timezone": "",
     "title": "Cache clearing",
     "uid": "bi4AbQtnk",
-    "version": 31,
+    "version": 33,
     "weekStart": ""
   }
 }
