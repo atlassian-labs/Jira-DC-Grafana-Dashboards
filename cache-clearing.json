@@ -9,10 +9,10 @@
     "url": "/d/bi4AbQtnk/cache-clearing",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:04:21Z",
-    "updated": "2022-03-14T11:49:55Z",
+    "updated": "2022-03-21T23:38:50Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 29,
+    "version": 31,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -70,6 +70,7 @@
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
     "id": 3,
+    "iteration": 1647905909211,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -469,7 +470,26 @@
     "style": "dark",
     "tags": [],
     "templating": {
-      "list": []
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "Blitz",
+            "value": "Blitz"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "label": "Datasource",
+          "multi": false,
+          "name": "query0",
+          "options": [],
+          "query": "prometheus",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        }
+      ]
     },
     "time": {
       "from": "now-1h",
@@ -479,7 +499,7 @@
     "timezone": "",
     "title": "Cache clearing",
     "uid": "bi4AbQtnk",
-    "version": 29,
+    "version": 31,
     "weekStart": ""
   }
 }
