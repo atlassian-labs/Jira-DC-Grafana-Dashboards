@@ -9,10 +9,10 @@
     "url": "/d/dA8tm85nz/response-times",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2022-03-08T10:05:01Z",
-    "updated": "2022-03-22T04:18:46Z",
+    "updated": "2022-03-23T23:10:52Z",
     "updatedBy": "admin",
     "createdBy": "admin",
-    "version": 40,
+    "version": 42,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -70,7 +70,7 @@
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
     "id": 7,
-    "iteration": 1647922581533,
+    "iteration": 1648074524932,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -346,12 +346,7 @@
             "show": false
           },
           "showHeader": true,
-          "sortBy": [
-            {
-              "desc": true,
-              "displayName": "99th response time (ms)"
-            }
-          ]
+          "sortBy": []
         },
         "pluginVersion": "8.3.6",
         "targets": [
@@ -361,7 +356,7 @@
               "uid": "${query0}"
             },
             "exemplar": false,
-            "expr": "topk(500, sum without (instance, tag_templateName) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) )",
+            "expr": "topk(500, avg without (instance, tag_templateName) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) )",
             "format": "table",
             "instant": true,
             "interval": "",
@@ -388,7 +383,7 @@
               "uid": "${query0}"
             },
             "exemplar": false,
-            "expr": "sum without (instance, tag_templateName) (com_atlassian_jira_metrics_99thPercentile{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
+            "expr": "max without (instance, tag_templateName) (com_atlassian_jira_metrics_99thPercentile{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
             "format": "table",
             "hide": false,
             "instant": true,
@@ -1157,7 +1152,7 @@
               "uid": "${query0}"
             },
             "exemplar": false,
-            "expr": "avg without (instance) (com_atlassian_jira_metrics_99thPercentile{category00=\"http\", category01=\"rest\", name=\"request\"})",
+            "expr": "max without (instance) (com_atlassian_jira_metrics_99thPercentile{category00=\"http\", category01=\"rest\", name=\"request\"})",
             "format": "table",
             "hide": false,
             "instant": true,
@@ -1187,7 +1182,10 @@
                 "Value #A": "AVG response time (ms)",
                 "Value #B": "Requests count",
                 "Value #C": "99th response time (ms)",
-                "tag_path": ""
+                "job": "",
+                "tag_action": "Action",
+                "tag_fromPluginKey": "Plugin Key",
+                "tag_path": "Path"
               }
             }
           }
@@ -1515,7 +1513,7 @@
     "timezone": "",
     "title": "Response times",
     "uid": "dA8tm85nz",
-    "version": 40,
+    "version": 42,
     "weekStart": ""
   }
 }
