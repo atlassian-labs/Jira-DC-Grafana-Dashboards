@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1648082416253,
+  "iteration": 1648433968420,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -262,7 +262,7 @@
       "type": "timeseries"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -270,334 +270,335 @@
         "y": 10
       },
       "id": 31,
-      "panels": [],
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "description": "Measures how long a Soy Template web panel is taking to render.\n\nThe template renderer might be long-running. If there is a plugin with a slow Soy renderer it might be worth adding (tag__templateName) to the query and contacting the vendor responsible to investigate if long-running queries are expected.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "displayMode": "auto"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 18,
+            "w": 12,
+            "x": 0,
+            "y": 11
+          },
+          "id": 25,
+          "options": {
+            "footer": {
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "8.3.6",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "exemplar": false,
+              "expr": "topk(500, avg without (instance, tag_templateName) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) )",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "exemplar": false,
+              "expr": "sum without (instance, tag_templateName) (com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "exemplar": false,
+              "expr": "max without (instance, tag_templateName) (com_atlassian_jira_metrics_99thPercentile{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "C"
+            }
+          ],
+          "title": "Soy web panel response times (cluster-wide)",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {}
+            },
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "Time": true,
+                  "job": true,
+                  "name": true,
+                  "tag_templateRenderer": true
+                },
+                "indexByName": {
+                  "Time": 0,
+                  "Value #A": 5,
+                  "Value #B": 6,
+                  "Value #C": 7,
+                  "job": 1,
+                  "name": 2,
+                  "tag_fromPluginKey": 4,
+                  "tag_templateRenderer": 3
+                },
+                "renameByName": {
+                  "Value #A": "AVG response time (ms)",
+                  "Value #B": "Number of template renders",
+                  "Value #C": "99th response time (ms)",
+                  "tag_fromPluginKey": "Plugin key",
+                  "tag_templateName": ""
+                }
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "description": "Measures how long a Soy Template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
+          "editable": false,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 5,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": ""
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 60000
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 11
+          },
+          "id": 3,
+          "isNew": false,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "span": 0,
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "exemplar": true,
+              "expr": "topk(5, (sum without (instance) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) / sum without (instance) (com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\", tag_templateRenderer=\"soy\"})))",
+              "interval": "",
+              "legendFormat": "{{tag_fromPluginKey}} - {{tag_templateName}} (template)",
+              "refId": "A"
+            }
+          ],
+          "title": "soy web panel response time (mean - cluster wide)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "description": "Measures how long a Soy Template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
+          "editable": false,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 5,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": ""
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 60000
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 20
+          },
+          "id": 18,
+          "isNew": false,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "span": 0,
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "exemplar": true,
+              "expr": "topk(5, com_atlassian_jira_metrics_99thPercentile{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
+              "interval": "",
+              "legendFormat": "{{tag_fromPluginKey}} - {{tag_templateName}}__{{instance}} (template)",
+              "refId": "A"
+            }
+          ],
+          "title": "soy web panel response time (p99 - per node) ",
+          "type": "timeseries"
+        }
+      ],
       "title": "Soy web panel render times",
       "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "description": "Measures how long a Soy Template web panel is taking to render.\n\nThe template renderer might be long-running. If there is a plugin with a slow Soy renderer it might be worth adding (tag__templateName) to the query and contacting the vendor responsible to investigate if long-running queries are expected.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 18,
-        "w": 12,
-        "x": 0,
-        "y": 11
-      },
-      "id": 25,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "8.3.6",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": false,
-          "expr": "topk(500, avg without (instance, tag_templateName) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) )",
-          "format": "table",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": false,
-          "expr": "sum without (instance, tag_templateName) (com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": false,
-          "expr": "max without (instance, tag_templateName) (com_atlassian_jira_metrics_99thPercentile{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "C"
-        }
-      ],
-      "title": "Soy web panel response times (cluster-wide)",
-      "transformations": [
-        {
-          "id": "merge",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "job": true,
-              "name": true,
-              "tag_templateRenderer": true
-            },
-            "indexByName": {
-              "Time": 0,
-              "Value #A": 5,
-              "Value #B": 6,
-              "Value #C": 7,
-              "job": 1,
-              "name": 2,
-              "tag_fromPluginKey": 4,
-              "tag_templateRenderer": 3
-            },
-            "renameByName": {
-              "Value #A": "AVG response time (ms)",
-              "Value #B": "Number of template renders",
-              "Value #C": "99th response time (ms)",
-              "tag_fromPluginKey": "Plugin key",
-              "tag_templateName": ""
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "description": "Measures how long a Soy Template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
-      "editable": false,
-      "error": false,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": ""
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 60000
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 11
-      },
-      "id": 3,
-      "isNew": false,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "span": 0,
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": true,
-          "expr": "topk(5, (sum without (instance) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) / sum without (instance) (com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\", tag_templateRenderer=\"soy\"})))",
-          "interval": "",
-          "legendFormat": "{{tag_fromPluginKey}} - {{tag_templateName}} (template)",
-          "refId": "A"
-        }
-      ],
-      "title": "soy web panel response time (mean - cluster wide)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "description": "Measures how long a Soy Template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
-      "editable": false,
-      "error": false,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": ""
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 60000
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 20
-      },
-      "id": 18,
-      "isNew": false,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "span": 0,
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": true,
-          "expr": "topk(5, com_atlassian_jira_metrics_99thPercentile{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
-          "interval": "",
-          "legendFormat": "{{tag_fromPluginKey}} - {{tag_templateName}}__{{instance}} (template)",
-          "refId": "A"
-        }
-      ],
-      "title": "soy web panel response time (p99 - per node) ",
-      "type": "timeseries"
     },
     {
       "collapsed": false,
@@ -607,7 +608,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 11
       },
       "id": 12,
       "isNew": false,
@@ -682,7 +683,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 12
       },
       "id": 13,
       "isNew": false,
@@ -779,7 +780,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 12
       },
       "id": 14,
       "isNew": false,
@@ -818,7 +819,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 21
       },
       "id": 10,
       "isNew": false,
@@ -893,7 +894,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 40
+        "y": 22
       },
       "id": 5,
       "isNew": false,
@@ -990,7 +991,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 40
+        "y": 22
       },
       "id": 19,
       "isNew": false,
@@ -1029,7 +1030,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 31
       },
       "id": 21,
       "isNew": false,
@@ -1074,7 +1075,7 @@
         "h": 26,
         "w": 12,
         "x": 0,
-        "y": 50
+        "y": 32
       },
       "id": 27,
       "options": {
@@ -1234,7 +1235,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 50
+        "y": 32
       },
       "id": 22,
       "isNew": false,
@@ -1256,7 +1257,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "topk(5, (sum without (instance) (com_atlassian_jira_metrics_Mean{category00=\"http\", category01=\"rest\", name=\"request\"}) / sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"http\", category01=\"rest\", name=\"request\"})))",
+          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{category00=\"http\", category01=\"rest\", name=\"request\"})",
           "interval": "",
           "legendFormat": "{{tag_fromPluginKey}} - {{tag_path}} (path)",
           "refId": "A"
@@ -1331,7 +1332,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 59
+        "y": 41
       },
       "id": 23,
       "isNew": false,
@@ -1423,7 +1424,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 68
+        "y": 50
       },
       "id": 29,
       "options": {
@@ -1489,6 +1490,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 43,
+  "version": 45,
   "weekStart": ""
 }
