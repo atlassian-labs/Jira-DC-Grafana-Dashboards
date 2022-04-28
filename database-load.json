@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1647922799129,
+  "iteration": 1651128443101,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -160,7 +160,7 @@
           "refId": "A"
         }
       ],
-      "title": "load using AO's EntityManager (mean - cluster wide)",
+      "title": "Load using AO's EntityManager (mean - cluster wide) by plugin",
       "type": "timeseries"
     },
     {
@@ -810,7 +810,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "10s",
+  "refresh": "",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -844,6 +844,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 30,
+  "version": 31,
   "weekStart": ""
 }
