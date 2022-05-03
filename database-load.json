@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1651128443101,
+  "iteration": 1651537694307,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -703,7 +703,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "sum without (instance, tag_invokerPluginKey, tag_taskName) (com_atlassian_jira_metrics_Value{category00=\"db\", category01=\"ao\", name=\"upgradetask\", tag_statistic=\"active\"})",
+          "expr": "sum without (instance, tag_fromPluginKey, tag_taskName) (com_atlassian_jira_metrics_Value{category00=\"db\",category01=\"ao\",name=\"upgradeTask\",tag_statistic=\"active\",tag_subCategory=\"current\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -800,7 +800,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "sum without (instance) (com_atlassian_jira_metrics_Value{category00=\"db\", category01=\"ao\", name=\"upgradetask\", tag_statistic=\"active\"})",
+          "expr": "sum without (instance) (com_atlassian_jira_metrics_Value{category00=\"db\",category01=\"ao\",name=\"upgradeTask\",tag_statistic=\"active\",tag_subCategory=\"current\"})",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }} - {{tag_taskName}} (task)",
           "refId": "A"
@@ -829,6 +829,7 @@
         "name": "query0",
         "options": [],
         "query": "prometheus",
+        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -844,6 +845,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 31,
+  "version": 33,
   "weekStart": ""
 }
