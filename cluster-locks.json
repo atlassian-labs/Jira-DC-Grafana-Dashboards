@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1647922738198,
+  "iteration": 1651543184405,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -120,6 +120,10 @@
       "type": "gauge"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
       "description": "Measures how long a database cluster lock was held for. Used by Jira in a clustered environment.\n\nLock contention can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue. It maybe normal to have a thread holding onto a lock for a long time, if there aren’t any threads waiting for the lock - see db.cluster.lock.waited.duration to find out if there are any threads waiting for the lock.",
       "editable": false,
       "error": false,
@@ -172,7 +176,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "sum without (instance,tag_pluginKeyAtCreation,tag_implementation,tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_statistic=\"active\"})",
@@ -777,6 +781,6 @@
   "timezone": "",
   "title": "Cluster Locks",
   "uid": "dq5VGx2nz",
-  "version": 47,
+  "version": 49,
   "weekStart": ""
 }

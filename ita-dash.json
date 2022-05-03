@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1647922816717,
+  "iteration": 1651543656564,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -326,6 +326,10 @@
     {
       "colorBackground": false,
       "colorValue": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
       "decimals": 0,
       "editable": false,
       "error": false,
@@ -389,7 +393,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "java_lang_OperatingSystem_AvailableProcessors{}",
@@ -829,6 +833,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
       "description": "",
       "editable": false,
       "error": false,
@@ -909,7 +917,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "increase(jvm_gc_collection_seconds_count{}[1m])",
@@ -1600,6 +1608,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
       "editable": false,
       "error": false,
       "fieldConfig": {
@@ -1679,7 +1691,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "com_atlassian_jira_BasicDataSource_NumActive{connectionpool=\"connections\"}",
@@ -1690,7 +1702,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "com_atlassian_jira_BasicDataSource_NumIdle{connectionpool=\"connections\"}",
@@ -1703,6 +1715,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
       "editable": false,
       "error": false,
       "fieldConfig": {
@@ -1782,7 +1798,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "rate(com_atlassian_jira_db_reads_invocation_count[1m])",
@@ -1793,7 +1809,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "rate(com_atlassian_jira_db_writes_invocation_count[1m])",
@@ -1825,6 +1841,7 @@
         "name": "query0",
         "options": [],
         "query": "prometheus",
+        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1840,6 +1857,6 @@
   "timezone": "",
   "title": "ITA Dash",
   "uid": "IeEDnNp7z",
-  "version": 40,
+  "version": 44,
   "weekStart": ""
 }
