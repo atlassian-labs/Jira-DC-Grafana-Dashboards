@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1651537694307,
+  "iteration": 1651720765806,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -154,13 +154,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "(sum without (instance, entityType) (sum without (name) (com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * sum without (name) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}))/10000)",
+          "expr": "(sum without (instance, tag_entityType) (sum without (name) (com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * sum without (name) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"})))",
           "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}}",
           "refId": "A"
         }
       ],
-      "title": "Load using AO's EntityManager (mean - cluster wide) by plugin",
+      "title": "Load using AO's EntityManager (cumulative - cluster wide) by plugin",
       "type": "timeseries"
     },
     {
@@ -251,7 +251,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "(sum without (name,entityType) (com_atlassian_jira_metrics_99thPercentile{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}))/1000",
+          "expr": "(sum without (name,tag_entityType) (com_atlassian_jira_metrics_99thPercentile{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}))",
           "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}}",
           "refId": "A"
@@ -845,6 +845,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 33,
+  "version": 34,
   "weekStart": ""
 }
