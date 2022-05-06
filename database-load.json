@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1651720765808,
+  "iteration": 1651797687022,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -154,7 +154,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "(sum without (instance, entityType) (sum without (name) (com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * sum without (name) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}))/10000)",
+          "expr": "(sum without (instance, tag_entityType) (sum without (name) (com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * sum without (name) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"})))",
           "hide": false,
           "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}}",
@@ -252,7 +252,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "(sum without (name,tag_entityType) (com_atlassian_jira_metrics_99thPercentile{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}))/1000",
+          "expr": "(sum without (name,tag_entityType) (com_atlassian_jira_metrics_99thPercentile{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}))",
           "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}}",
           "refId": "A"
@@ -846,6 +846,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 35,
+  "version": 38,
   "weekStart": ""
 }
