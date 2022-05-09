@@ -21,16 +21,12 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "hideControls": false,
   "id": null,
-  "iteration": 1652058545474,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -87,94 +83,6 @@
         "x": 0,
         "y": 0
       },
-      "id": 4,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": false,
-          "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{name=\"task\"})",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Task Count",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
       "id": 2,
       "options": {
         "legend": {
@@ -186,23 +94,11 @@
           "mode": "single"
         }
       },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": false,
-          "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{name=\"longRunningTask\"})",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Long Running Task Count",
+      "title": "Panel Title",
       "type": "timeseries"
     }
   ],
+  "refresh": "",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -221,7 +117,6 @@
         "name": "query0",
         "options": [],
         "query": "prometheus",
-        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -235,8 +130,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Tasks",
-  "uid": "nm3K8p8nz",
-  "version": 7,
+  "title": "New dashboard",
+  "uid": "9v-K6L_nk",
+  "version": 1,
   "weekStart": ""
 }
