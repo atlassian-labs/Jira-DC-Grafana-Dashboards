@@ -74,7 +74,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "",
+      "description": "Measures how long it takes for a Lucene index search to take place. \n\nIf a plugin triggers searches that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the index searches using the invokerPluginKey tag ",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -197,7 +197,7 @@
             },
             "renameByName": {
               "Value #A": "AVG response time (ms)",
-              "Value #B": "Number of lucene index searches",
+              "Value #B": "Number of Lucene index searches",
               "Value #C": "99th response time (ms)",
               "tag_fromPluginKey": "Plugin key",
               "tag_templateName": ""
@@ -212,6 +212,7 @@
         "type": "prometheus",
         "uid": "UKZbfKl7k"
       },
+      "description": "Measures how long it takes for a Lucene index search to take place. \n\nIf a plugin triggers searches that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the index searches using the invokerPluginKey tag ",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -302,7 +303,7 @@
         "type": "prometheus",
         "uid": "UKZbfKl7k"
       },
-      "description": "",
+      "description": "Measures how long it takes for a Lucene index search to take place. \n\nIf a plugin triggers searches that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the index searches using the invokerPluginKey tag ",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2179,6 +2180,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 10,
+  "version": 13,
   "weekStart": ""
 }
