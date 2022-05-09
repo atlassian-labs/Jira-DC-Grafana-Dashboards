@@ -3,10 +3,7 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
+        "datasource": "-- Grafana --",
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -20,10 +17,7 @@
         "type": "dashboard"
       },
       {
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
+        "datasource": "-- Grafana --",
         "enable": true,
         "expr": "",
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -51,357 +45,20 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
-  "iteration": 1652056595217,
+  "id": null,
+  "iteration": 1651538259133,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 40,
-      "panels": [],
-      "title": "Lucene index search evaluation times",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "description": "Measures how long it takes for a Lucene index search to take place. \n\nIf a plugin triggers searches that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the index searches using the invokerPluginKey tag ",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 18,
-        "w": 12,
-        "x": 0,
-        "y": 1
-      },
-      "id": 41,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Number of template renders"
-          }
-        ]
-      },
-      "pluginVersion": "8.5.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": false,
-          "expr": "topk(500, avg without (instance, tag_query, category00) (com_atlassian_jira_metrics_Mean{category00=\"search\", name=\"index\"}) )",
-          "format": "table",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum without (instance, tag_query, category00) (com_atlassian_jira_metrics_Count{category00=\"search\", name=\"index\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": false,
-          "expr": "max without (instance, tag_query, category00) (com_atlassian_jira_metrics_99thPercentile{category00=\"search\", name=\"index\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "C"
-        }
-      ],
-      "title": "Lucene index search response times (cluster-wide)",
-      "transformations": [
-        {
-          "id": "merge",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "job": true,
-              "name": true,
-              "tag_templateRenderer": true
-            },
-            "indexByName": {
-              "Time": 0,
-              "Value #A": 5,
-              "Value #B": 6,
-              "Value #C": 7,
-              "job": 1,
-              "name": 2,
-              "tag_fromPluginKey": 4,
-              "tag_templateRenderer": 3
-            },
-            "renameByName": {
-              "Value #A": "AVG response time (ms)",
-              "Value #B": "Number of Lucene index searches",
-              "Value #C": "99th response time (ms)",
-              "tag_fromPluginKey": "Plugin key",
-              "tag_templateName": ""
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "UKZbfKl7k"
-      },
-      "description": "Measures how long it takes for a Lucene index search to take place. \n\nIf a plugin triggers searches that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the index searches using the invokerPluginKey tag ",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 1
-      },
-      "id": 38,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "UKZbfKl7k"
-          },
-          "editorMode": "code",
-          "expr": "topk(5, com_atlassian_jira_metrics_99thPercentile{category00=\"search\", name=\"index\"})",
-          "legendFormat": "{{tag_invokerPluginKey}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "lucene index search evaluation time (top 5 p99 - per node)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "UKZbfKl7k"
-      },
-      "description": "Measures how long it takes for a Lucene index search to take place. \n\nIf a plugin triggers searches that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the index searches using the invokerPluginKey tag ",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 9
-      },
-      "id": 36,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "UKZbfKl7k"
-          },
-          "editorMode": "code",
-          "expr": "(avg by (tag_invokerPluginKey) (com_atlassian_jira_metrics_Mean{category00=\"search\",name=\"index\"}))",
-          "legendFormat": "{{tag_invokerPluginKey}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "lucene index search evaluation times - (mean - cluster wide)",
-      "type": "timeseries"
-    },
-    {
-      "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "UKZbfKl7k"
-      },
       "editable": false,
       "error": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 0
       },
       "id": 16,
       "isNew": false,
@@ -476,7 +133,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 20
+        "y": 1
       },
       "id": 17,
       "isNew": false,
@@ -487,8 +144,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -574,7 +230,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 20
+        "y": 1
       },
       "id": 6,
       "isNew": false,
@@ -585,8 +241,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -608,15 +263,11 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "UKZbfKl7k"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 10
       },
       "id": 31,
       "panels": [],
@@ -636,8 +287,7 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
+            "displayMode": "auto"
           },
           "mappings": [],
           "thresholds": {
@@ -660,7 +310,7 @@
         "h": 18,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 11
       },
       "id": 25,
       "options": {
@@ -674,7 +324,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "8.3.6",
       "targets": [
         {
           "datasource": {
@@ -821,7 +471,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 11
       },
       "id": 3,
       "isNew": false,
@@ -832,8 +482,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -919,7 +568,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 39
+        "y": 20
       },
       "id": 18,
       "isNew": false,
@@ -930,8 +579,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -953,17 +601,13 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "UKZbfKl7k"
-      },
       "editable": false,
       "error": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 29
       },
       "id": 12,
       "isNew": false,
@@ -985,8 +629,7 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
+            "displayMode": "auto"
           },
           "mappings": [],
           "thresholds": {
@@ -1009,7 +652,7 @@
         "h": 18,
         "w": 12,
         "x": 0,
-        "y": 49
+        "y": 30
       },
       "id": 34,
       "options": {
@@ -1023,7 +666,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "8.3.6",
       "targets": [
         {
           "datasource": {
@@ -1170,7 +813,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 49
+        "y": 30
       },
       "id": 13,
       "isNew": false,
@@ -1181,8 +824,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -1251,7 +893,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1267,7 +910,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 58
+        "y": 39
       },
       "id": 14,
       "isNew": false,
@@ -1278,8 +921,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -1301,17 +943,13 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "UKZbfKl7k"
-      },
       "editable": false,
       "error": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 67
+        "y": 48
       },
       "id": 10,
       "isNew": false,
@@ -1369,7 +1007,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1385,7 +1024,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 68
+        "y": 49
       },
       "id": 5,
       "isNew": false,
@@ -1396,8 +1035,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -1466,7 +1104,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1482,7 +1121,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 68
+        "y": 49
       },
       "id": 19,
       "isNew": false,
@@ -1493,8 +1132,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -1516,17 +1154,13 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "UKZbfKl7k"
-      },
       "editable": false,
       "error": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 77
+        "y": 58
       },
       "id": 21,
       "isNew": false,
@@ -1548,15 +1182,15 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
+            "displayMode": "auto"
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1571,7 +1205,7 @@
         "h": 26,
         "w": 12,
         "x": 0,
-        "y": 78
+        "y": 59
       },
       "id": 27,
       "options": {
@@ -1590,7 +1224,7 @@
           }
         ]
       },
-      "pluginVersion": "8.5.1",
+      "pluginVersion": "8.3.6",
       "targets": [
         {
           "datasource": {
@@ -1714,7 +1348,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1730,7 +1365,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 78
+        "y": 59
       },
       "id": 22,
       "isNew": false,
@@ -1741,8 +1376,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -1811,7 +1445,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1827,7 +1462,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 87
+        "y": 68
       },
       "id": 23,
       "isNew": false,
@@ -1838,8 +1473,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -1903,7 +1537,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1919,7 +1554,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 96
+        "y": 77
       },
       "id": 29,
       "options": {
@@ -1929,8 +1564,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "targets": [
@@ -1998,7 +1632,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2014,7 +1649,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 104
+        "y": 85
       },
       "id": 32,
       "isNew": false,
@@ -2025,8 +1660,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -2095,7 +1729,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2111,7 +1746,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 104
+        "y": 85
       },
       "id": 33,
       "isNew": false,
@@ -2122,8 +1757,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "single"
         }
       },
       "span": 0,
@@ -2145,7 +1779,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 36,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2153,8 +1787,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Prometheus",
-          "value": "Prometheus"
+          "text": "Blitz",
+          "value": "Blitz"
         },
         "description": "Choose the data source to apply to this dashboard",
         "hide": 0,
@@ -2180,6 +1814,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 13,
+  "version": 50,
   "weekStart": ""
 }
