@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1652067084763,
+  "iteration": 1652094685913,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -83,7 +83,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"isFieldIndexableForIssue\"})",
+          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -96,7 +96,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "max without (instance) (com_atlassian_jira_metrics_Mean{name=\"isFieldIndexableForIssue\"})",
+          "expr": "max without (instance) (com_atlassian_jira_metrics_99thPercentile{name=\"addIndex\", category01=\"field\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -216,7 +216,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"isFieldIndexableForIssue\"})",
+          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"})",
           "interval": "",
           "legendFormat": "{{tag_fromPluginKey}} - {{tag_conditionClassName}} (condition)",
           "refId": "A"
@@ -261,6 +261,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }
