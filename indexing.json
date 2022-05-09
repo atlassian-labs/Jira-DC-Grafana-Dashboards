@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1652094685913,
+  "iteration": 1652138268999,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -193,7 +193,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 12,
         "y": 0
@@ -218,7 +218,7 @@
           "exemplar": true,
           "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"})",
           "interval": "",
-          "legendFormat": "{{tag_fromPluginKey}} - {{tag_conditionClassName}} (condition)",
+          "legendFormat": "{{tag_fromPluginKey}} - {{tag_fieldId}} ",
           "refId": "A"
         }
       ],
@@ -261,6 +261,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 6,
+  "version": 8,
   "weekStart": ""
 }
