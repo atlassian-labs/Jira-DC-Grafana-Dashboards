@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1651797687022,
+  "iteration": 1652163006880,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -154,14 +154,14 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "(sum without (instance, tag_entityType) (sum without (name) (com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * sum without (name) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"})))",
+          "expr": "(avg without (instance, name, tag_entityType) (com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}))",
           "hide": false,
           "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}}",
           "refId": "A"
         }
       ],
-      "title": "Load using AO's EntityManager (cumulative - cluster wide) by plugin",
+      "title": "load using AO's EntityManager (mean - cluster wide) by plugin",
       "type": "timeseries"
     },
     {
@@ -262,6 +262,104 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "Measures the total count of AO operations (create, find, delete, deleteWithSQL, get, stream, count) by the plugins.\n\nThe operation query might be long running, or the database is under load. Contact the vendor responsible and investigate if long running queries are expected.",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": ""
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 20,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "sum without (instance, name, tag_entityType) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}}",
+          "refId": "A"
+        }
+      ],
+      "title": "cumulative count of AO's EntityManager by plugin",
+      "type": "timeseries"
+    },
+    {
       "collapsed": false,
       "editable": false,
       "error": false,
@@ -269,7 +367,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 17
       },
       "id": 13,
       "isNew": false,
@@ -312,7 +410,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 10
+        "y": 18
       },
       "id": 3,
       "isNew": false,
@@ -413,7 +511,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 18
       },
       "id": 8,
       "isNew": false,
@@ -452,7 +550,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 26
       },
       "id": 17,
       "isNew": false,
@@ -495,7 +593,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 19
+        "y": 27
       },
       "id": 18,
       "isNew": false,
@@ -596,7 +694,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 19
+        "y": 27
       },
       "id": 19,
       "isNew": false,
@@ -635,7 +733,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 35
       },
       "id": 11,
       "isNew": false,
@@ -678,7 +776,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 36
       },
       "id": 7,
       "isNew": false,
@@ -779,7 +877,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 36
       },
       "id": 9,
       "isNew": false,
@@ -846,6 +944,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 38,
+  "version": 42,
   "weekStart": ""
 }
