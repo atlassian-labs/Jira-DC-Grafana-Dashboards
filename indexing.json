@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1652142452745,
+  "iteration": 1652142863063,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -289,7 +289,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -324,6 +325,97 @@
         }
       ],
       "title": "Custom field indexing time (mean - cluster wide) ",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "Measures the total accumulated indexing time per plugin by summing all the custom fields indexing metrics. \n\nHigh indexing time needs to be investigated and flagged to the app vendor.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "id": 10,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "sum by (tag_fromPluginKey) (com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"}) + sum by (tag_fromPluginKey) (com_atlassian_jira_metrics_Mean{name=\"isFieldIndexableForIssue\", category01=\"field\"})",
+          "interval": "",
+          "legendFormat": "{{tag_fromPluginKey}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Custom field total indexing time by plugin",
+      "transformations": [],
       "type": "timeseries"
     }
   ],
@@ -362,6 +454,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 10,
+  "version": 11,
   "weekStart": ""
 }
