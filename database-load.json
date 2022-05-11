@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1652230694039,
+  "iteration": 1652239174330,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -356,7 +356,7 @@
           "refId": "A"
         }
       ],
-      "title": "cumulative count of AO's EntityManager by plugin",
+      "title": "cumulative count using AO's EntityManager (cluster wide)",
       "type": "timeseries"
     },
     {
@@ -944,6 +944,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 49,
+  "version": 50,
   "weekStart": ""
 }
