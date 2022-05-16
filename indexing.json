@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1652329407216,
+  "iteration": 1652675810364,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -95,7 +95,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 12,
         "x": 0,
         "y": 1
@@ -184,8 +184,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 10,
+        "w": 6,
         "x": 12,
         "y": 1
       },
@@ -207,7 +207,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "com_atlassian_jira_metrics_99thPercentile{category00=\"issue\", name=\"ReIndex\", tag_invokerPluginKey!=\"\"}",
+          "expr": "com_atlassian_jira_metrics_99thPercentile{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"}",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }}",
           "refId": "A"
@@ -273,10 +273,99 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 9
+        "h": 10,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "com_atlassian_jira_metrics_99thPercentile{category00=\"comment\", name=\"reindexing\", tag_invokerPluginKey!=\"\"}",
+          "interval": "",
+          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Comment Reindexing by Plugin (p99)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 0,
+        "y": 11
       },
       "id": 13,
       "options": {
@@ -296,7 +385,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{category00=\"issue\", name=\"ReIndex\", tag_invokerPluginKey!=\"\"})",
+          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"})",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }}",
           "refId": "A"
@@ -362,10 +451,189 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 10,
+        "w": 6,
+        "x": 6,
+        "y": 11
+      },
+      "id": 19,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "avg without (instance) (com_atlassian_jira_metrics_Count{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"})",
+          "interval": "",
+          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Issue Reindexing by Plugin (count - cluster wide)",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 6,
         "x": 12,
-        "y": 17
+        "y": 11
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{category00=\"comment\", name=\"reindexing\", tag_invokerPluginKey!=\"\"})",
+          "interval": "",
+          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Comment Reindexing by Plugin (mean - cluster wide)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 18,
+        "y": 11
       },
       "id": 16,
       "options": {
@@ -385,14 +653,79 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Count{category00=\"issue\", name=\"ReIndex\", tag_invokerPluginKey!=\"\"})",
+          "expr": "avg without (instance) (com_atlassian_jira_metrics_Count{category00=\"comment\", name=\"reindexing\", tag_invokerPluginKey!=\"\"})",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
-      "title": "Issue Reindexing by Plugin (count - cluster wide)",
+      "title": "Comment Reindexing by Plugin (count - cluster wide)",
+      "transformations": [],
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 21
+      },
+      "id": 21,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "sum without(instance, tag_invokerPluginKey) (com_atlassian_jira_metrics_Value{category00=\"comment\", name=\"reindexing\", tag_statistic=\"active\"})",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Comment reindexing operations",
+      "type": "gauge"
     },
     {
       "collapsed": false,
@@ -400,7 +733,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 30
       },
       "id": 6,
       "panels": [],
@@ -443,7 +776,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 31
       },
       "id": 2,
       "options": {
@@ -578,7 +911,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 26
+        "y": 31
       },
       "id": 4,
       "options": {
@@ -668,7 +1001,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 35
+        "y": 40
       },
       "id": 10,
       "options": {
@@ -699,7 +1032,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -734,6 +1067,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 13,
+  "version": 14,
   "weekStart": ""
 }
