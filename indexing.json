@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1652675810364,
+  "iteration": 1652675810366,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -132,6 +132,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures how long it takes for an Issue to be reindexed.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -221,6 +222,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures how long it takes for a Comment to be reindexed.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -310,6 +312,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures how long it takes on average for Issues to be reindexed across the cluster.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -399,6 +402,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures how many times Issues have been reindexed across the cluster.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -489,6 +493,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures how long it takes on average for Comments to be reindexed across the cluster.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -578,6 +583,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures how many times Comments have been reindexed across the cluster.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -668,7 +674,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "",
+      "description": "Shows how many Comment operations are currently active.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1067,6 +1073,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 14,
+  "version": 15,
   "weekStart": ""
 }
