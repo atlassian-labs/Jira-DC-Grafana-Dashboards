@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1652675810366,
+  "iteration": 1653626385912,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -388,7 +388,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"})",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"}) * (com_atlassian_jira_metrics_Count{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"}))) /\n(sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"}))",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }}",
           "refId": "A"
@@ -1073,6 +1073,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 15,
+  "version": 16,
   "weekStart": ""
 }
