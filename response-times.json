@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1653917075243,
+  "iteration": 1653965294863,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -669,7 +669,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "topk(500, avg without (instance, tag_templateName) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) )",
+          "expr": "avg without (instance, tag_templateName) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1152,7 +1152,7 @@
               "options": {
                 "mode": "exclude",
                 "names": [
-                  "com.atlassian.diagnostics.noisy-neighbour-plugin - admin.vm (template)"
+                  "com.green.alien - admin.vm (template)"
                 ],
                 "prefix": "All except:",
                 "readOnly": true
@@ -1582,7 +1582,7 @@
         "sortBy": [
           {
             "desc": true,
-            "displayName": "99th response time (ms)"
+            "displayName": "Requests count"
           }
         ]
       },
@@ -2202,6 +2202,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 56,
+  "version": 57,
   "weekStart": ""
 }
