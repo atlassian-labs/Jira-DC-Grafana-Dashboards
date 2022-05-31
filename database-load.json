@@ -52,7 +52,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1653626204198,
+  "iteration": 1653974448938,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -209,7 +209,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "UKZbfKl7k"
+        "uid": "${query0}"
       },
       "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
       "fieldConfig": {
@@ -285,7 +285,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "UKZbfKl7k"
+            "uid": "${query0}"
           },
           "editorMode": "code",
           "expr": "com_atlassian_jira_metrics_99thPercentile{name=\"executionTime\", category00=\"db\", category01=\"core\"}",
@@ -397,7 +397,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
       "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
       "fieldConfig": {
         "defaults": {
@@ -497,7 +500,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "UKZbfKl7k"
+            "uid": "${query0}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1400,9 +1403,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "Prometheus",
-          "value": "Prometheus"
+          "selected": true,
+          "text": "Blitz #4",
+          "value": "Blitz #4"
         },
         "hide": 0,
         "includeAll": false,
@@ -1427,6 +1430,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 55,
+  "version": 57,
   "weekStart": ""
 }
