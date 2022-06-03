@@ -52,7 +52,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1653974448938,
+  "iteration": 1654229096176,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -294,7 +294,7 @@
           "refId": "A"
         }
       ],
-      "title": "DB Core Execution Time (top 5 p99 - per node)",
+      "title": "DB Core Execution Time (p99 - per node)",
       "type": "timeseries"
     },
     {
@@ -451,32 +451,7 @@
           },
           "unit": "ms"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "com.atlassian.audit.atlassian-audit-plugin"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 14,
@@ -1430,6 +1405,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 57,
+  "version": 58,
   "weekStart": ""
 }
