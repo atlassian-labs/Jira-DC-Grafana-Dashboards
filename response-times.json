@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1654493052605,
+  "iteration": 1654643283229,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -203,7 +203,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "UKZbfKl7k"
+        "uid": "${query0}"
       },
       "description": "Measures how long it takes for a Lucene index search to take place. \n\nIf a plugin triggers searches that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the index searches using the invokerPluginKey tag ",
       "fieldConfig": {
@@ -279,10 +279,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "UKZbfKl7k"
+            "uid": "${query0}"
           },
           "editorMode": "code",
+          "exemplar": true,
           "expr": "topk(5, com_atlassian_jira_metrics_99thPercentile{category00=\"search\", name=\"index\"})",
+          "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}}",
           "range": true,
           "refId": "A"
@@ -2215,6 +2217,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 58,
+  "version": 59,
   "weekStart": ""
 }

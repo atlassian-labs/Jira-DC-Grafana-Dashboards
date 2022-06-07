@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1653626385912,
+  "iteration": 1654643056768,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -118,13 +118,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg (com_atlassian_jira_metrics_Mean{name=\"ReIndex\", category00=\"issue\"})",
+          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"ReIndex\", category00=\"issue\"})",
           "interval": "",
-          "legendFormat": "test - {{instance}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
-      "title": "Issue reindex (cluster wide)",
+      "title": "Issue reindex (mean - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -132,7 +132,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long it takes for an Issue to be reindexed.",
+      "description": "Measures how long it takes for an Issue to be reindexed by a plugin.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -214,7 +214,7 @@
           "refId": "A"
         }
       ],
-      "title": "Issue Reindexing by Plugin (p99)",
+      "title": "Issue Reindexing by Plugin (p99 - per node)",
       "type": "timeseries"
     },
     {
@@ -222,7 +222,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long it takes for a Comment to be reindexed.",
+      "description": "Measures how long it takes for a Comment to be reindexed by a plugin.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -304,7 +304,7 @@
           "refId": "A"
         }
       ],
-      "title": "Comment Reindexing by Plugin (p99)",
+      "title": "Comment Reindexing by Plugin (p99 - per node)",
       "type": "timeseries"
     },
     {
@@ -1038,7 +1038,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "5s",
+  "refresh": "",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -1073,6 +1073,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 16,
+  "version": 19,
   "weekStart": ""
 }
