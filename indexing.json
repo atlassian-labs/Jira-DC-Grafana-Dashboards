@@ -44,6 +44,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures the average time issue reindexing takes across the cluster.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -120,7 +121,7 @@
           "exemplar": true,
           "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"ReIndex\", category00=\"issue\"})",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "ReIndex operation",
           "refId": "A"
         }
       ],
@@ -402,7 +403,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how many times Issues have been reindexed across the cluster.",
+      "description": "Measures how many times Issues have been reindexed by a plugin across the cluster.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -478,7 +479,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Count{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"})",
+          "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"})",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }}",
           "refId": "A"
@@ -1038,7 +1039,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -1073,6 +1074,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 19,
+  "version": 21,
   "weekStart": ""
 }
