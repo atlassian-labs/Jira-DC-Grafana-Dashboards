@@ -1,4 +1,4 @@
-# Jira DC Grafana Dashabords
+# Jira DC Grafana Dashboards
 [![Atlassian license](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
 ## Overview
