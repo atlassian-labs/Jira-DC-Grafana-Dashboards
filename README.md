@@ -5,9 +5,10 @@
 Monitoring can give you a deeper insight into what apps are doing in your instance.
 
 ## Getting started
-You'll need a copy of the Java agent and the [Prometheus JMX Exporter](https://github.com/prometheus/jmx_exporter).
 
-You'll also need a running instance of Prometheus and Grafana. Details for setup and configuration can be found in the EAP documentation.
+To use the dashboards you'll need to setup Grafana ([Learn more](https://grafana.com/docs/grafana/next/setup-grafana/)) and import the dashboards. ([Learn more](https://grafana.com/docs/grafana/latest/dashboards/export-import/))
+
+To see real data in Grafana, you'll need a Promtheus-compatible server for it to connect to. An option is to setup Prometheus ([Learn more](https://prometheus.io/docs/prometheus/latest/getting_started/)) and use the Promtheus JMX exporter with Jira. ([Learn more](https://confluence.atlassian.com/doc/monitor-application-performance-1115674751.html))
 
 ## What's Included?
 
