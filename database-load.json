@@ -52,12 +52,12 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1654229096176,
+  "iteration": 1655722273710,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -65,429 +65,426 @@
         "y": 0
       },
       "id": 22,
-      "panels": [],
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "displayMode": "auto"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 14,
+            "w": 12,
+            "x": 0,
+            "y": 1
+          },
+          "id": 24,
+          "options": {
+            "footer": {
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Number of DB Core Executions"
+              }
+            ]
+          },
+          "pluginVersion": "8.3.6",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "exemplar": false,
+              "expr": "topk(500, avg without (instance, tag_query, category00, category01) (com_atlassian_jira_metrics_Mean{name=\"executionTime\", category00=\"db\", category01=\"core\"}) )",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum without (instance, tag_query, category00, category01) (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"})",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "exemplar": false,
+              "expr": "max without (instance, tag_query, category00, category01) (com_atlassian_jira_metrics_99thPercentile{name=\"executionTime\", category00=\"db\", category01=\"core\"})",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "C"
+            }
+          ],
+          "title": "DB Core Execution Response Times (Cluster Wide)",
+          "transformations": [
+            {
+              "id": "merge",
+              "options": {}
+            },
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "Time": true,
+                  "job": true,
+                  "name": true,
+                  "tag_templateRenderer": true
+                },
+                "indexByName": {
+                  "Time": 0,
+                  "Value #A": 5,
+                  "Value #B": 6,
+                  "Value #C": 7,
+                  "job": 1,
+                  "name": 2,
+                  "tag_fromPluginKey": 4,
+                  "tag_templateRenderer": 3
+                },
+                "renameByName": {
+                  "Value #A": "AVG response time (ms)",
+                  "Value #B": "Number of DB Core Executions",
+                  "Value #C": "99th response time (ms)",
+                  "tag_fromPluginKey": "Plugin key",
+                  "tag_templateName": ""
+                }
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 14,
+            "w": 12,
+            "x": 12,
+            "y": 1
+          },
+          "id": 26,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "editorMode": "code",
+              "expr": "com_atlassian_jira_metrics_99thPercentile{name=\"executionTime\", category00=\"db\", category01=\"core\"}",
+              "legendFormat": "{{tag_invokerPluginKey}} - {{instance}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "DB Core Execution Time (p99 - per node)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
+          "editable": false,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 5,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": ""
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 5000
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 14,
+            "w": 12,
+            "x": 0,
+            "y": 15
+          },
+          "id": 29,
+          "isNew": false,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "span": 0,
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "exemplar": true,
+              "expr": "sum without (instance, tag_entityType) (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"})",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "{{tag_invokerPluginKey}} - {{name}} ",
+              "refId": "A"
+            }
+          ],
+          "title": "cumulative count of core db executions (cluster wide) ",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 14,
+            "w": 12,
+            "x": 12,
+            "y": 15
+          },
+          "id": 28,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${query0}"
+              },
+              "editorMode": "code",
+              "exemplar": true,
+              "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{name=\"executionTime\", category00=\"db\", category01=\"core\"}) * (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"}))) /\n(sum without (instance) (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"}))\n",
+              "interval": "",
+              "legendFormat": "{{tag_invokerPluginKey}}",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "DB core execution evaluation times - (mean - cluster wide)",
+          "type": "timeseries"
+        }
+      ],
       "title": "DB Core Execution Times",
       "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 12,
-        "x": 0,
-        "y": 1
-      },
-      "id": 24,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Number of DB Core Executions"
-          }
-        ]
-      },
-      "pluginVersion": "8.3.6",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": false,
-          "expr": "topk(500, avg without (instance, tag_query, category00, category01) (com_atlassian_jira_metrics_Mean{name=\"executionTime\", category00=\"db\", category01=\"core\"}) )",
-          "format": "table",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum without (instance, tag_query, category00, category01) (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": false,
-          "expr": "max without (instance, tag_query, category00, category01) (com_atlassian_jira_metrics_99thPercentile{name=\"executionTime\", category00=\"db\", category01=\"core\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "C"
-        }
-      ],
-      "title": "DB Core Execution Response Times (Cluster Wide)",
-      "transformations": [
-        {
-          "id": "merge",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "job": true,
-              "name": true,
-              "tag_templateRenderer": true
-            },
-            "indexByName": {
-              "Time": 0,
-              "Value #A": 5,
-              "Value #B": 6,
-              "Value #C": 7,
-              "job": 1,
-              "name": 2,
-              "tag_fromPluginKey": 4,
-              "tag_templateRenderer": 3
-            },
-            "renameByName": {
-              "Value #A": "AVG response time (ms)",
-              "Value #B": "Number of DB Core Executions",
-              "Value #C": "99th response time (ms)",
-              "tag_fromPluginKey": "Plugin key",
-              "tag_templateName": ""
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 12,
-        "x": 12,
-        "y": 1
-      },
-      "id": 26,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "editorMode": "code",
-          "expr": "com_atlassian_jira_metrics_99thPercentile{name=\"executionTime\", category00=\"db\", category01=\"core\"}",
-          "legendFormat": "{{tag_invokerPluginKey}} - {{instance}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "DB Core Execution Time (p99 - per node)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
-      "editable": false,
-      "error": false,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": ""
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 5000
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 12,
-        "x": 0,
-        "y": 15
-      },
-      "id": 29,
-      "isNew": false,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "span": 0,
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": true,
-          "expr": "sum without (instance, tag_entityType) (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{tag_invokerPluginKey}} - {{name}} ",
-          "refId": "A"
-        }
-      ],
-      "title": "cumulative count of core db executions (cluster wide) ",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "description": "Measures how long it takes for a DB Query to be executed from being provided a SQL statement to providing the results. \n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 12,
-        "x": 12,
-        "y": 15
-      },
-      "id": 28,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{name=\"executionTime\", category00=\"db\", category01=\"core\"}) * (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"}))) /\n(sum without (instance) (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"}))\n",
-          "interval": "",
-          "legendFormat": "{{tag_invokerPluginKey}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "DB core execution evaluation times - (mean - cluster wide)",
-      "type": "timeseries"
     },
     {
       "collapsed": false,
@@ -501,7 +498,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 1
       },
       "id": 15,
       "isNew": false,
@@ -575,7 +572,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 2
       },
       "id": 2,
       "isNew": false,
@@ -674,7 +671,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 2
       },
       "id": 6,
       "isNew": false,
@@ -772,7 +769,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 10
       },
       "id": 20,
       "isNew": false,
@@ -817,7 +814,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 18
       },
       "id": 13,
       "isNew": false,
@@ -860,7 +857,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 47
+        "y": 19
       },
       "id": 3,
       "isNew": false,
@@ -961,7 +958,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 47
+        "y": 19
       },
       "id": 8,
       "isNew": false,
@@ -1005,7 +1002,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 55
+        "y": 27
       },
       "id": 17,
       "isNew": false,
@@ -1048,7 +1045,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 56
+        "y": 28
       },
       "id": 18,
       "isNew": false,
@@ -1149,7 +1146,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 56
+        "y": 28
       },
       "id": 19,
       "isNew": false,
@@ -1193,7 +1190,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 36
       },
       "id": 11,
       "isNew": false,
@@ -1236,7 +1233,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 65
+        "y": 37
       },
       "id": 7,
       "isNew": false,
@@ -1337,7 +1334,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 65
+        "y": 37
       },
       "id": 9,
       "isNew": false,
@@ -1379,8 +1376,8 @@
       {
         "current": {
           "selected": true,
-          "text": "Blitz #4",
-          "value": "Blitz #4"
+          "text": "1Bulldog",
+          "value": "1Bulldog"
         },
         "hide": 0,
         "includeAll": false,
@@ -1405,6 +1402,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 58,
+  "version": 60,
   "weekStart": ""
 }
