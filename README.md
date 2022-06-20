@@ -2,7 +2,7 @@
 [![Atlassian license](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
 ## Overview
-Monitoring can give you a deeper insight into what apps are doing in your instance.
+Monitoring your Jira instance can give you a deeper insight into how the instance is being used, and what apps are doing. These Grafana dashboards are a view to be used for monitoring.
 
 ## Getting started
 
