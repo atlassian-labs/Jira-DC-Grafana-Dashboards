@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1651543656564,
+  "iteration": 1655804703188,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -931,6 +931,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
       "editable": false,
       "error": false,
       "fieldConfig": {
@@ -992,6 +996,10 @@
       "span": 0,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
           "exemplar": true,
           "expr": "jvm_threads_state{state=\"BLOCKED\"}",
           "hide": false,
@@ -1857,6 +1865,6 @@
   "timezone": "",
   "title": "ITA Dash",
   "uid": "IeEDnNp7z",
-  "version": 44,
+  "version": 45,
   "weekStart": ""
 }
