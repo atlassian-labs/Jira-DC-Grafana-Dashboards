@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1652058545474,
+  "iteration": 1656995389176,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -31,6 +31,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures how long a task in queue is taking. Generally used for email queues or specific short running task\n\nCheck the duration of the task and if it’s taking too long look for the queueName and pluginKey to identify the source then react out to app vendor to flag this issue.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -119,6 +120,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures how long the long running tasks are taking.\n\nCheck the duration of the task and if it’s taking too long, look for the taskClass and pluginKey to identify the source then react out to app vendor to flag this issue.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -237,6 +239,6 @@
   "timezone": "",
   "title": "Tasks",
   "uid": "nm3K8p8nz",
-  "version": 7,
+  "version": 8,
   "weekStart": ""
 }

@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1654643056768,
+  "iteration": 1656994457197,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -44,7 +44,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures the average time issue reindexing takes across the cluster.",
+      "description": "Measures how long it takes for an Issue to be reindexed across the cluster\n\nIf a plugin triggers Issue reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Issue reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -133,7 +133,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long it takes for an Issue to be reindexed by a plugin.",
+      "description": "Measures how long it takes for an Issue to be reindexed per node\n\nIf a plugin triggers Issue reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Issue reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -223,7 +223,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long it takes for a Comment to be reindexed by a plugin.",
+      "description": "Measures how long it takes for a Comment to be reindexed by a plugin.\n\n\t\nIf a plugin triggers Comment reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Comment reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -313,7 +313,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long it takes on average for Issues to be reindexed across the cluster.",
+      "description": "Measures how long it takes on average for Issues to be reindexed across the cluster.\n\nIf a plugin triggers Issue reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Issue reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -403,7 +403,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how many times Issues have been reindexed by a plugin across the cluster.",
+      "description": "Measures how long it takes for an Issue to be reindexed across the cluster\n\nIf a plugin triggers Issue reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Issue reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -494,7 +494,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long it takes on average for Comments to be reindexed across the cluster.",
+      "description": "Measures how long it takes for a Comment to be reindexed by a plugin.\n\n\t\nIf a plugin triggers Comment reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Comment reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -584,7 +584,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how many times Comments have been reindexed across the cluster.",
+      "description": "Measures how long it takes for a Comment to be reindexed by a plugin.\n\n\t\nIf a plugin triggers Comment reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Comment reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -675,7 +675,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Shows how many Comment operations are currently active.",
+      "description": "Shows how many Comment operations are currently active.\n\nIf a plugin triggers Comment reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Comment reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -863,6 +863,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
+      "description": "Measures how long custom field indexing takes and it's impact on indexing in general. High indexing times means the plugin has introduced a field that is impacting the performance of Jira and should be investigated.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1074,6 +1075,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 21,
+  "version": 22,
   "weekStart": ""
 }

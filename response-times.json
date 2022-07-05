@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1654643283229,
+  "iteration": 1656995180001,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -960,7 +960,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long a Soy Template web panel is taking to render.\n\nThe template renderer might be long-running. If there is a plugin with a slow Soy renderer it might be worth adding (tag__templateName) to the query and contacting the vendor responsible to investigate if long-running queries are expected.",
+      "description": "Measures how long a Velocity template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1091,7 +1091,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long an Atlassian Template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
+      "description": "Measures how long a Velocity template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
       "editable": false,
       "error": false,
       "fieldConfig": {
@@ -1213,7 +1213,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long an Atlassian Template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
+      "description": "Measures how long a Velocity template web panel is taking to render.\n\nThe template renderer might be long running. Contact the vendor responsible and investigate if long running queries are expected.",
       "editable": false,
       "error": false,
       "fieldConfig": {
@@ -1983,7 +1983,7 @@
       },
       "id": 43,
       "panels": [],
-      "title": "HTTP Sal Request (todo name this better)",
+      "title": "HTTP Sal Request ",
       "type": "row"
     },
     {
@@ -1991,7 +1991,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures HTTP requests of the SAL request APIs.\n\nCheck the frequency and duration of the rest requests. If excessive or very slow, consider reaching out to the app vendor and flag this issue to them.",
+      "description": "Measures HTTP requests of the given unique URL that uses atlassian-sal module. \n\nCheck the frequency and duration of the http requests. If excessive or very slow, consider reaching out to the app vendor and flag this issue to them. You could also enable url optional tag to identify which urls are causing the issue, you can do so by setting a system variable like so atlassian.metrics.optional.tags.http.sal.request=url",
       "editable": false,
       "error": false,
       "fieldConfig": {
@@ -2088,7 +2088,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures HTTP requests of the SAL request APIs.\n\nCheck the frequency and duration of the rest requests. If excessive or very slow, consider reaching out to the app vendor and flag this issue to the",
+      "description": "Measures HTTP requests of the given unique URL that uses atlassian-sal module. \n\nCheck the frequency and duration of the http requests. If excessive or very slow, consider reaching out to the app vendor and flag this issue to them. You could also enable url optional tag to identify which urls are causing the issue, you can do so by setting a system variable like so atlassian.metrics.optional.tags.http.sal.request=url",
       "editable": false,
       "error": false,
       "fieldConfig": {
@@ -2217,6 +2217,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 59,
+  "version": 60,
   "weekStart": ""
 }
