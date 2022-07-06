@@ -52,7 +52,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657064835673,
+  "iteration": 1657080860790,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1268,7 +1268,7 @@
           "refId": "A"
         }
       ],
-      "title": "AO Upgrade Tasks - (current - active count)",
+      "title": "AO Upgrade Tasks (current - active count)",
       "type": "gauge"
     },
     {
@@ -1405,6 +1405,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 63,
+  "version": 64,
   "weekStart": ""
 }
