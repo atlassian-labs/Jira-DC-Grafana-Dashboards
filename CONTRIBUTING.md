@@ -29,8 +29,11 @@ Please follow the existing naming format when naming a title:
 `<what is being measured> (<statistical measure (if applicable)> - <cluster wide/per node>)`
 
 Examples:
+
 `DB Core Execution Time (mean - cluster wide)`
+
 `DB Core Execution Time (p99 -  cluster wide)`
+
 `AO Upgrade Tasks - (current - active count)`
 
 If your metric doesn't fit this format, use your best judgement.
