@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657068088720,
+  "iteration": 1657069101331,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -531,7 +531,7 @@
           "refId": "C"
         }
       ],
-      "title": "Most locks held",
+      "title": "Most locks held (cluster wide)",
       "transformations": [
         {
           "id": "merge",
@@ -713,7 +713,7 @@
           "refId": "C"
         }
       ],
-      "title": "Most locks waited",
+      "title": "Most locks waited (cluster wide)",
       "transformations": [
         {
           "id": "merge",
@@ -781,6 +781,6 @@
   "timezone": "",
   "title": "Cluster Locks",
   "uid": "dq5VGx2nz",
-  "version": 50,
+  "version": 51,
   "weekStart": ""
 }

@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1656995180001,
+  "iteration": 1657069154908,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -163,7 +163,7 @@
           "refId": "C"
         }
       ],
-      "title": "Lucene index search response times (cluster-wide)",
+      "title": "Lucene Index Search Response Times (cluster-wide)",
       "transformations": [
         {
           "id": "merge",
@@ -290,7 +290,7 @@
           "refId": "A"
         }
       ],
-      "title": "lucene index search evaluation time (top 5 p99 - per node)",
+      "title": "Lucene Index Search Evaluation Time (top 5 p99 - per node)",
       "type": "timeseries"
     },
     {
@@ -495,7 +495,7 @@
           "refId": "A"
         }
       ],
-      "title": "web fragment condition evaluation time (mean - cluster wide)",
+      "title": "Web Fragment Condition Evaluation Time (mean - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -592,7 +592,7 @@
           "refId": "A"
         }
       ],
-      "title": "web fragment condition evaluation time (p99 - per node)",
+      "title": "Web Fragment Condition Evaluation Time (p99 - per node)",
       "type": "timeseries"
     },
     {
@@ -707,7 +707,7 @@
           "refId": "C"
         }
       ],
-      "title": "Soy web panel response times (cluster-wide)",
+      "title": "Soy Web Panel Response Times (cluster-wide)",
       "transformations": [
         {
           "id": "merge",
@@ -838,7 +838,7 @@
           "refId": "A"
         }
       ],
-      "title": "soy web panel response time (mean - cluster wide)",
+      "title": "Soy Web Panel Response Time (mean - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -935,7 +935,7 @@
           "refId": "A"
         }
       ],
-      "title": "soy web panel response time (p99 - per node) ",
+      "title": "Soy Web Panel Response Time (p99 - per node) ",
       "type": "timeseries"
     },
     {
@@ -1049,7 +1049,7 @@
           "refId": "C"
         }
       ],
-      "title": "Velocity web panel response times (cluster-wide)",
+      "title": "Velocity Web Panel Response Times (cluster-wide)",
       "transformations": [
         {
           "id": "merge",
@@ -1205,7 +1205,7 @@
           "refId": "A"
         }
       ],
-      "title": "velocity web panel response time (mean - cluster wide)",
+      "title": "Velocity Web Panel Response Time (mean - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -1302,7 +1302,7 @@
           "refId": "A"
         }
       ],
-      "title": "velocity web panel response time (p99 - per node) ",
+      "title": "Velocity web panel response time (p99 - per node) ",
       "type": "timeseries"
     },
     {
@@ -1416,7 +1416,7 @@
           "refId": "A"
         }
       ],
-      "title": "web resource condition evaluation time (mean - cluster wide)",
+      "title": "Web resource condition evaluation time (mean - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -1513,7 +1513,7 @@
           "refId": "A"
         }
       ],
-      "title": "web resource condition evaluation time (p99 - per node)",
+      "title": "Web resource condition evaluation time (p99 - per node)",
       "type": "timeseries"
     },
     {
@@ -1632,7 +1632,7 @@
           "refId": "C"
         }
       ],
-      "title": "Most requested endpoints & response time",
+      "title": "Most requested endpoints & response time (cluster wide)",
       "transformations": [
         {
           "id": "merge",
@@ -1783,7 +1783,7 @@
           "refId": "A"
         }
       ],
-      "title": "http rest request time (mean - cluster wide)",
+      "title": "HTTP REST request time (mean - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -1880,7 +1880,7 @@
           "refId": "A"
         }
       ],
-      "title": "http rest request time (p99 - per node)",
+      "title": "HTTP REST request time (p99 - per node)",
       "type": "timeseries"
     },
     {
@@ -2080,7 +2080,7 @@
           "refId": "A"
         }
       ],
-      "title": "http SAL request time (mean - cluster wide)",
+      "title": "HTTP SAL request time (mean - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -2177,7 +2177,7 @@
           "refId": "A"
         }
       ],
-      "title": "http SAL request time (p99 - per node)",
+      "title": "HTTP SAL request time (p99 - per node)",
       "type": "timeseries"
     }
   ],
@@ -2217,6 +2217,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 60,
+  "version": 61,
   "weekStart": ""
 }

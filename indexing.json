@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1656994457197,
+  "iteration": 1657068187330,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -125,7 +125,7 @@
           "refId": "A"
         }
       ],
-      "title": "Issue reindex (mean - cluster wide)",
+      "title": "Issue Reindex (mean - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -731,7 +731,7 @@
           "refId": "A"
         }
       ],
-      "title": "Comment reindexing operations",
+      "title": "Active Comment Reindexing Operations - (cluster wide)",
       "type": "gauge"
     },
     {
@@ -1035,7 +1035,7 @@
           "refId": "A"
         }
       ],
-      "title": "Custom field total indexing time by plugin",
+      "title": "Custom field total indexing time by plugin (cluster wide)",
       "transformations": [],
       "type": "timeseries"
     }
@@ -1075,6 +1075,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 22,
+  "version": 23,
   "weekStart": ""
 }
