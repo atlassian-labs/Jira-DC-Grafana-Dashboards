@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1656994283014,
+  "iteration": 1657067999971,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -144,7 +144,7 @@
           "refId": "A"
         }
       ],
-      "title": "Flush all caches rate",
+      "title": "Flush All Caches Rate (cluster wide)",
       "type": "timeseries"
     },
     {
@@ -241,7 +241,7 @@
           "refId": "A"
         }
       ],
-      "title": "Remove all entries rate",
+      "title": "Remove all entries rate (cluster wide)",
       "type": "timeseries"
     },
     {
@@ -356,7 +356,7 @@
           "refId": "B"
         }
       ],
-      "title": "Plugin enabled/disabled events",
+      "title": "Plugin enabled/disabled events (per node)",
       "type": "timeseries"
     },
     {
@@ -453,7 +453,7 @@
           "refId": "A"
         }
       ],
-      "title": "Reset cache rate",
+      "title": "Reset cache rate (cluster wide)",
       "type": "timeseries"
     }
   ],
@@ -492,6 +492,6 @@
   "timezone": "",
   "title": "Cache clearing",
   "uid": "bi4AbQtnk",
-  "version": 35,
+  "version": 36,
   "weekStart": ""
 }

@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1651543184405,
+  "iteration": 1657068088720,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -116,7 +116,7 @@
           "refId": "A"
         }
       ],
-      "title": "cluster locks held",
+      "title": "Active Cluster Locks Held (current - cluster wide)",
       "type": "gauge"
     },
     {
@@ -185,7 +185,7 @@
           "refId": "A"
         }
       ],
-      "title": "cluster locks waited",
+      "title": "Active Locks Waiting (current - cluster wide)",
       "type": "gauge"
     },
     {
@@ -282,7 +282,7 @@
           "refId": "A"
         }
       ],
-      "title": "active locks held (cluster wide)",
+      "title": "Active Cluster Locks Held (over time - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -379,7 +379,7 @@
           "refId": "A"
         }
       ],
-      "title": "active locks waiting (cluster wide)",
+      "title": "Active Locks Waiting (over time - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -781,6 +781,6 @@
   "timezone": "",
   "title": "Cluster Locks",
   "uid": "dq5VGx2nz",
-  "version": 49,
+  "version": 50,
   "weekStart": ""
 }
