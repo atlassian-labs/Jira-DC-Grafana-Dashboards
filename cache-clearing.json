@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657067999971,
+  "iteration": 1657256319038,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -457,7 +457,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "10s",
+  "refresh": "",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -492,6 +492,6 @@
   "timezone": "",
   "title": "Cache clearing",
   "uid": "bi4AbQtnk",
-  "version": 36,
+  "version": 38,
   "weekStart": ""
 }
