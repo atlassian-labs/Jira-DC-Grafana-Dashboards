@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657068187330,
+  "iteration": 1657524549911,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -119,13 +119,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"ReIndex\", category00=\"issue\"})",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{name=\"ReIndex\", category00=\"issue\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"ReIndex\", category00=\"issue\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{name=\"ReIndex\", category00=\"issue\"}[5m])))\n",
           "interval": "",
           "legendFormat": "ReIndex operation",
           "refId": "A"
         }
       ],
-      "title": "Issue Reindex (mean - cluster wide)",
+      "title": "Issue Reindex (mean last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -389,13 +389,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"}) * (com_atlassian_jira_metrics_Count{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"}))) /\n(sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"issue\", name=\"reindexing\", tag_invokerPluginKey!=\"\"}))",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{name=\"reindexing\", category00=\"issue\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"reindexing\", category00=\"issue\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{name=\"reindexing\", category00=\"issue\"}[5m])))",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
-      "title": "Issue Reindexing by Plugin (mean - cluster wide)",
+      "title": "Issue Reindexing by Plugin (mean last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -570,13 +570,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{category00=\"comment\", name=\"reindexing\", tag_invokerPluginKey!=\"\"})",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{category00=\"comment\", name=\"reindexing\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"comment\", name=\"reindexing\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{category00=\"comment\", name=\"reindexing\"}[5m])))",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
-      "title": "Comment Reindexing by Plugin (mean - cluster wide)",
+      "title": "Comment Reindexing by Plugin (mean last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -804,7 +804,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"})",
+          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"})\n\n",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -847,7 +847,7 @@
             "indexByName": {},
             "renameByName": {
               "Value #A": "Avg indexing time",
-              "Value #B": "99th indexing time",
+              "Value #B": "99th percentile indexing time",
               "name": "",
               "tag_fieldId": "Field Id",
               "tag_fieldName": "Field Name",
@@ -939,13 +939,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"})",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"addIndex\", category01=\"field\"}[5m])))) /\n(sum without (instance) (delta(com_atlassian_jira_metrics_Count{name=\"addIndex\", category01=\"field\"}[5m])))",
           "interval": "",
           "legendFormat": "{{tag_fromPluginKey}} - {{tag_fieldId}} ",
           "refId": "A"
         }
       ],
-      "title": "Custom field indexing time (mean - cluster wide) ",
+      "title": "Custom field indexing time (mean last 5 minutes - cluster wide) ",
       "type": "timeseries"
     },
     {
@@ -1075,6 +1075,6 @@
   "timezone": "",
   "title": "Indexing",
   "uid": "9v-K6L_nk",
-  "version": 23,
+  "version": 25,
   "weekStart": ""
 }

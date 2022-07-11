@@ -52,7 +52,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657080860790,
+  "iteration": 1657523815851,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -479,14 +479,14 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{name=\"executionTime\", category00=\"db\", category01=\"core\"}) * (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"}))) /\n(sum without (instance) (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"}))\n",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{name=\"executionTime\", category00=\"db\", category01=\"core\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"}[5m]))) /\n(sum without (instance) (delta(com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"}[5m]))))\n",
           "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "DB Core Execution Evaluation Times (mean - cluster wide)",
+      "title": "DB Core Execution Evaluation Times (mean last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -598,14 +598,14 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}))) /\n(sum without (instance, tag_entityType) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}))\n",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}[5m])))\n",
           "hide": false,
           "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}} - {{name}}",
           "refId": "A"
         }
       ],
-      "title": "Load Using AO EntityManager (mean - cluster wide)",
+      "title": "Load Using AO EntityManager (mean last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -1268,7 +1268,7 @@
           "refId": "A"
         }
       ],
-      "title": "AO Upgrade Tasks (current - active count)",
+      "title": "AO Upgrade Tasks - (current - active count)",
       "type": "gauge"
     },
     {
@@ -1405,6 +1405,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 64,
+  "version": 66,
   "weekStart": ""
 }
