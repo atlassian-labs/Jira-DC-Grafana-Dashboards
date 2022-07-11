@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657069101331,
+  "iteration": 1657502797857,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -276,7 +276,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "topk(10, sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_pluginKeyAtCreation!=\"undefined\",tag_statistic=\"active\"}))",
+          "expr": "topk(10, sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_statistic=\"active\"}))",
           "interval": "",
           "legendFormat": "{{tag_pluginKeyAtCreation}} ",
           "refId": "A"
@@ -373,7 +373,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "topk(10, sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"waited\",tag_statistic=\"active\",tag_pluginKeyAtCreation!=\"undefined\"}))",
+          "expr": "topk(10, sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"waited\",tag_statistic=\"active\"}))",
           "interval": "",
           "legendFormat": "{{tag_pluginKeyAtCreation}}",
           "refId": "A"
@@ -781,6 +781,6 @@
   "timezone": "",
   "title": "Cluster Locks",
   "uid": "dq5VGx2nz",
-  "version": 51,
+  "version": 52,
   "weekStart": ""
 }
