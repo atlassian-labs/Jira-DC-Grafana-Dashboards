@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657502797857,
+  "iteration": 1657517099696,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -387,7 +387,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long a database cluster lock was held for. Used by Jira in a clustered environment.\n\nIf there many threads waiting for the same lock, it can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue.",
+      "description": "* Average heavily weights timers from the last 5 minutes\n\nMeasures how long a database cluster lock was held for. Used by Jira in a clustered environment.\n\nIf there many threads waiting for the same lock, it can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -553,7 +553,7 @@
             },
             "indexByName": {},
             "renameByName": {
-              "Value #A": "Avg",
+              "Value #A": "Avg*",
               "Value #B": "Count",
               "Value #C": "99th Percentile",
               "tag_lockName": "lock name",
@@ -569,7 +569,7 @@
         "type": "prometheus",
         "uid": "${query0}"
       },
-      "description": "Measures how long a database cluster lock was waited for. Used by Jira in a clustered environment.\n\nIf there many threads waiting for the same lock, it can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue.",
+      "description": "* Average heavily weights timers from the last 5 minutes\nMeasures how long a database cluster lock was waited for. Used by Jira in a clustered environment.\n\nIf there many threads waiting for the same lock, it can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -735,7 +735,7 @@
             },
             "indexByName": {},
             "renameByName": {
-              "Value #A": "Avg",
+              "Value #A": "Avg*",
               "Value #B": "Count",
               "Value #C": "99th Percentile",
               "tag_lockName": "lock name",
@@ -781,6 +781,6 @@
   "timezone": "",
   "title": "Cluster Locks",
   "uid": "dq5VGx2nz",
-  "version": 52,
+  "version": 53,
   "weekStart": ""
 }
