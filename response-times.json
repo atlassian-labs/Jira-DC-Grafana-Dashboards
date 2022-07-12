@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657596883526,
+  "iteration": 1657600195724,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -193,6 +193,7 @@
               "Value #B": "Number of Lucene index searches",
               "Value #C": "99th response time (ms)",
               "tag_fromPluginKey": "Plugin key",
+              "tag_invokerPluginKey": "Plugin key",
               "tag_templateName": ""
             }
           }
@@ -2195,6 +2196,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 85,
+  "version": 86,
   "weekStart": ""
 }
