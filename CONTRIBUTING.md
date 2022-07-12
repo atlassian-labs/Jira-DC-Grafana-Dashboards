@@ -2,7 +2,7 @@
 
 Thank you for considering a contribution to Jira DC Grafana Dashabords! Pull requests, issues and comments are welcome. For pull requests, please:
 
-* Add tests for new features and bug fixes
+* Attach screenshots of what's changed
 * Follow the existing style
 * Separate unrelated changes into multiple pull requests
 
