@@ -52,7 +52,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657595449438,
+  "iteration": 1657597624268,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -66,7 +66,7 @@
       },
       "id": 22,
       "panels": [],
-      "title": "DB Execution Times",
+      "title": "Overall DB Execution Times",
       "type": "row"
     },
     {
@@ -159,7 +159,7 @@
           "refId": "A"
         }
       ],
-      "title": "DB Load (last 5 minutes - cluster wide)",
+      "title": "Overall DB Load (last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -489,7 +489,7 @@
           "refId": "A"
         }
       ],
-      "title": "Cumulative Count of DB executions (cluster wide) ",
+      "title": "Cumulative count of DB executions (cluster wide) ",
       "type": "timeseries"
     },
     {
@@ -602,7 +602,7 @@
       "id": 15,
       "isNew": false,
       "span": 0,
-      "title": "Relative load by API",
+      "title": "AO's EntityManager by method",
       "type": "row"
     },
     {
@@ -701,7 +701,7 @@
           "refId": "A"
         }
       ],
-      "title": "Load Using AO EntityManager (mean last 5 minutes - cluster wide)",
+      "title": "Load via AO's EntityManager (mean last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -800,7 +800,7 @@
           "refId": "A"
         }
       ],
-      "title": "Operation times via AO EntityManager (mean last 5 minutes - cluster wide)",
+      "title": "Operation times via AO's EntityManager (mean last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -899,7 +899,7 @@
           "refId": "A"
         }
       ],
-      "title": "Cumulative Count Using AO's EntityManager (cluster wide)",
+      "title": "Cumulative count using AO's EntityManager (cluster wide)",
       "type": "timeseries"
     },
     {
@@ -991,13 +991,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "topk(5, (max without(instance) (com_atlassian_jira_metrics_99thPercentile{category00=\"db\", category01=\"ao\", category02=\"entityManager\"})))",
+          "expr": "com_atlassian_jira_metrics_99thPercentile{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}",
           "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}} - {{name}} - {{tag_entityType}}",
           "refId": "A"
         }
       ],
-      "title": "Operation times via AO EntityManager (p99 - cluster wide)",
+      "title": "Operation times via AO's EntityManager (p99)",
       "type": "timeseries"
     },
     {
@@ -1020,6 +1020,401 @@
       "span": 0,
       "title": "AO's executeInTransaction",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 62
+      },
+      "id": 32,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_taskName) ((com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"}[5m]))))\n",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Load via AO's executeInTransaction (mean last 5 minutes - cluster wide)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 62
+      },
+      "id": 33,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_taskName) ((com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"}[5m])))) /\n(sum without (instance, tag_taskName) (delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"}[5m])))\n",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Operation times via AO's executeInTransaction (mean last 5 minutes - cluster wide)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 70
+      },
+      "id": 34,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "sum without (instance, tag_taskName) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Cumulative count using AO's executeInTransaction (cluster wide)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "Measures how long an AO operation (create, find, delete, deleteWithSQL, get, stream, count) that uses the Entity Manager takes.\n\nThe operation query might be long running, or the database is under load. Contact the vendor responsible and investigate if long running queries are expected.",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 70
+      },
+      "id": 35,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "com_atlassian_jira_metrics_99thPercentile{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"}",
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}} - {{tag_taskName}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Operation times via AO's executeInTransaction (p99)",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -1055,7 +1450,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 62
+        "y": 78
       },
       "id": 3,
       "isNew": false,
@@ -1081,13 +1476,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "sum without (instance, tag_taskName, tag_invokerPluginKey) (com_atlassian_jira_metrics_Value{category00=\"db\",category01=\"ao\",name=\"executeInTransaction\", tag_statistic=\"active\", tag_taskName!=\"undefined\"})",
+          "expr": "sum without (instance, tag_taskName, tag_invokerPluginKey) (com_atlassian_jira_metrics_Value{category00=\"db\",category01=\"ao\",name=\"executeInTransaction\", tag_statistic=\"active\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "title": "Active Queries Using AO's Execute In Transaction (current - cluster wide)",
+      "title": "Total active operations running  via AO's executeInTransaction (current - cluster wide)",
       "type": "gauge"
     },
     {
@@ -1117,14 +1512,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1156,7 +1551,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 62
+        "y": 78
       },
       "id": 8,
       "isNew": false,
@@ -1179,13 +1574,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "sum without (instance) (com_atlassian_jira_metrics_Value{category00=\"db\",category01=\"ao\",name=\"executeInTransaction\", tag_statistic=\"active\", tag_taskName!=\"undefined\"})",
+          "expr": "sum without (instance) (com_atlassian_jira_metrics_Value{category00=\"db\",category01=\"ao\",name=\"executeInTransaction\", tag_statistic=\"active\"})",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }} - {{tag_taskName}} (task)",
           "refId": "A"
         }
       ],
-      "title": "Active Queries Running Using AO's Execute In Transaction (over time - active count)",
+      "title": "Active operations running via AO's executeInTransaction (over time - active count)",
       "type": "timeseries"
     },
     {
@@ -1200,14 +1595,409 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 70
+        "y": 86
       },
       "id": 17,
       "isNew": false,
       "panels": [],
       "span": 0,
-      "title": "SAL's executeInTransaction",
+      "title": "SAL's transactionalExecutor",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 87
+      },
+      "id": 36,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_taskName) ((com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"sal\", name=\"transactionalExecutor\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"sal\", name=\"transactionalExecutor\"}[5m]))))\n",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Load via SAL's transactionalExecutor (mean last 5 minutes - cluster wide)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 87
+      },
+      "id": 38,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_taskName) ((com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"}[5m])))) /\n(sum without (instance, tag_taskName) (delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", name=\"executeInTransaction\"}[5m])))\n",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Operation times via SAL's transactionalExecutor (mean last 5 minutes - cluster wide)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 95
+      },
+      "id": 37,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "sum without (instance, tag_taskName) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"sal\", name=\"transactionalExecutor\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Cumulative count using SAL's transactionalExecutor (cluster wide)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "Measures how long an AO operation (create, find, delete, deleteWithSQL, get, stream, count) that uses the Entity Manager takes.\n\nThe operation query might be long running, or the database is under load. Contact the vendor responsible and investigate if long running queries are expected.",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 95
+      },
+      "id": 39,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "com_atlassian_jira_metrics_99thPercentile{category00=\"db\", category01=\"sal\", name=\"transactionalExecutor\"}",
+          "interval": "",
+          "legendFormat": "{{ tag_invokerPluginKey }} - {{tag_taskName}} (task)",
+          "refId": "A"
+        }
+      ],
+      "title": "Operation times via SAL's transactionalExecutor (p99)",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -1243,7 +2033,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 71
+        "y": 103
       },
       "id": 18,
       "isNew": false,
@@ -1275,7 +2065,7 @@
           "refId": "A"
         }
       ],
-      "title": "Queries Using SAL's execute in transaction (current - active count)",
+      "title": "Total active operations running  via SAL's transactionalExecutor (current - cluster wide)",
       "type": "gauge"
     },
     {
@@ -1305,14 +2095,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1344,7 +2134,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 71
+        "y": 103
       },
       "id": 19,
       "isNew": false,
@@ -1373,7 +2163,7 @@
           "refId": "A"
         }
       ],
-      "title": "Queries Using SAL's execute in transaction (over time - active count)",
+      "title": "Active operations using SAL's transactionalExecutor (over time - active count)",
       "type": "timeseries"
     },
     {
@@ -1388,7 +2178,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 79
+        "y": 111
       },
       "id": 11,
       "isNew": false,
@@ -1431,7 +2221,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 80
+        "y": 112
       },
       "id": 7,
       "isNew": false,
@@ -1493,14 +2283,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1532,7 +2322,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 80
+        "y": 112
       },
       "id": 9,
       "isNew": false,
@@ -1600,6 +2390,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 89,
+  "version": 136,
   "weekStart": ""
 }

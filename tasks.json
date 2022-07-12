@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657596884705,
+  "iteration": 1657599968575,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -198,7 +198,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{name=\"longRunningTask\"})",
+          "expr": "sum without (instance) (com_atlassian_jira_metrics_Value{name=\"longRunningTask\", tag_statistic=\"active\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -242,6 +242,6 @@
   "timezone": "",
   "title": "Tasks",
   "uid": "nm3K8p8nz",
-  "version": 12,
+  "version": 14,
   "weekStart": ""
 }

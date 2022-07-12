@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657596881673,
+  "iteration": 1657599555120,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -413,7 +413,7 @@
       "error": false,
       "gridPos": {
         "h": 11,
-        "w": 3,
+        "w": 5,
         "x": 12,
         "y": 0
       },
@@ -517,8 +517,8 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 9,
-        "x": 15,
+        "w": 7,
+        "x": 17,
         "y": 0
       },
       "id": 33,
@@ -541,7 +541,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "increase(jvm_gc_collection_seconds_sum{}[1m])",
+          "expr": "increase(jvm_gc_collection_seconds_sum[5m])",
           "format": "time_series",
           "interval": "60s",
           "legendFormat": "{{gc}} - {{instance}}",
@@ -896,8 +896,8 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 9,
-        "x": 15,
+        "w": 7,
+        "x": 17,
         "y": 10
       },
       "id": 34,
@@ -920,7 +920,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "increase(jvm_gc_collection_seconds_count{}[1m])",
+          "expr": "increase(jvm_gc_collection_seconds_count{}[5m])",
           "format": "time_series",
           "interval": "1m",
           "legendFormat": "{{gc}} - {{instance}}",
@@ -973,7 +973,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 3,
+        "w": 5,
         "x": 12,
         "y": 11
       },
@@ -1027,109 +1027,6 @@
       "span": 0,
       "title": "Tomcat",
       "type": "row"
-    },
-    {
-      "editable": false,
-      "error": false,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 18,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 90
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 6,
-        "x": 0,
-        "y": 20
-      },
-      "id": 25,
-      "isNew": false,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "span": 0,
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "u5eohEYnz"
-          },
-          "exemplar": true,
-          "expr": "increase(Catalina_GlobalRequestProcessor_requestCount{}[10m])",
-          "interval": "",
-          "legendFormat": "{{name}} count - {{instance}}",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "u5eohEYnz"
-          },
-          "exemplar": true,
-          "expr": "increase(Catalina_GlobalRequestProcessor_errorCount{}[10m])",
-          "interval": "",
-          "legendFormat": "{{name}} error - {{instance}}",
-          "refId": "B"
-        }
-      ],
-      "title": "Tomcat Request Count",
-      "type": "timeseries"
     },
     {
       "alert": {
@@ -1237,9 +1134,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
-        "w": 6,
-        "x": 6,
+        "h": 20,
+        "w": 12,
+        "x": 0,
         "y": 20
       },
       "id": 19,
@@ -1324,7 +1221,7 @@
               }
             ]
           },
-          "unit": "ms"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -1333,6 +1230,190 @@
         "w": 6,
         "x": 12,
         "y": 20
+      },
+      "id": 25,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "u5eohEYnz"
+          },
+          "exemplar": true,
+          "expr": "increase(Catalina_GlobalRequestProcessor_requestCount{}[5m])",
+          "interval": "",
+          "legendFormat": "{{name}} count - {{instance}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Tomcat Request Count",
+      "type": "timeseries"
+    },
+    {
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 18,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 6,
+        "x": 18,
+        "y": 20
+      },
+      "id": 37,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "u5eohEYnz"
+          },
+          "exemplar": true,
+          "expr": "increase(Catalina_GlobalRequestProcessor_errorCount{}[5m])",
+          "interval": "",
+          "legendFormat": "{{name}} error - {{instance}}",
+          "refId": "B"
+        }
+      ],
+      "title": "Tomcat Error Count",
+      "type": "timeseries"
+    },
+    {
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 18,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 12,
+        "y": 31
       },
       "id": 26,
       "isNew": false,
@@ -1417,10 +1498,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
+        "h": 9,
         "w": 6,
         "x": 18,
-        "y": 20
+        "y": 31
       },
       "id": 27,
       "isNew": false,
@@ -1470,7 +1551,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 40
       },
       "id": 30,
       "isNew": false,
@@ -1586,7 +1667,7 @@
         "h": 14,
         "w": 8,
         "x": 0,
-        "y": 32
+        "y": 41
       },
       "id": 10,
       "isNew": false,
@@ -1690,7 +1771,7 @@
         "h": 14,
         "w": 8,
         "x": 8,
-        "y": 32
+        "y": 41
       },
       "id": 35,
       "isNew": false,
@@ -1797,7 +1878,7 @@
         "h": 14,
         "w": 8,
         "x": 16,
-        "y": 32
+        "y": 41
       },
       "id": 36,
       "isNew": false,
@@ -1819,7 +1900,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "rate(com_atlassian_jira_db_reads_invocation_count[1m])",
+          "expr": "delta(com_atlassian_jira_db_reads_invocation_count[5m])",
           "interval": "",
           "legendFormat": "reads - {{instance}}",
           "refId": "A"
@@ -1830,7 +1911,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "rate(com_atlassian_jira_db_writes_invocation_count[1m])",
+          "expr": "delta(com_atlassian_jira_db_writes_invocation_count[5m])",
           "interval": "",
           "legendFormat": "writes - {{instance}}",
           "refId": "B"
@@ -1875,6 +1956,6 @@
   "timezone": "",
   "title": "General",
   "uid": "IeEDnNp7z",
-  "version": 59,
+  "version": 67,
   "weekStart": ""
 }
