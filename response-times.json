@@ -711,7 +711,7 @@
           "refId": "C"
         }
       ],
-      "title": "Soy web panel response times (cluster-wide)",
+      "title": "Soy web panel render times (cluster-wide)",
       "transformations": [
         {
           "id": "merge",
@@ -737,7 +737,7 @@
               "tag_templateRenderer": 3
             },
             "renameByName": {
-              "Value #A": "AVG response time (ms)",
+              "Value #A": "Avg* response time (ms)",
               "Value #B": "Number of template renders",
               "Value #C": "99th response time (ms)",
               "tag_fromPluginKey": "Plugin key",
@@ -842,7 +842,7 @@
           "refId": "A"
         }
       ],
-      "title": "soy web panel response time (mean of last 5 minutes - cluster wide) ",
+      "title": "Soy web panel render time (mean of last 5 minutes - cluster wide) ",
       "type": "timeseries"
     },
     {
@@ -933,13 +933,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "topk(5, com_atlassian_jira_metrics_99thPercentile{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"})",
+          "expr": "com_atlassian_jira_metrics_99thPercentile{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}",
           "interval": "",
           "legendFormat": "{{tag_fromPluginKey}} - {{tag_templateName}}__{{instance}} (template)",
           "refId": "A"
         }
       ],
-      "title": "soy web panel response time (p99 - per node) ",
+      "title": "Soy web panel render time (p99 - per node) ",
       "type": "timeseries"
     },
     {
@@ -1053,7 +1053,7 @@
           "refId": "C"
         }
       ],
-      "title": "Velocity web panel response times (cluster-wide)",
+      "title": "Velocity web panel render times (cluster-wide)",
       "transformations": [
         {
           "id": "merge",
@@ -1079,7 +1079,7 @@
               "tag_templateRenderer": 3
             },
             "renameByName": {
-              "Value #A": "AVG response time (ms)",
+              "Value #A": "Avg* response time (ms)",
               "Value #B": "Number of template renders",
               "Value #C": "99th response time (ms)",
               "tag_fromPluginKey": "Plugin key",
@@ -2196,6 +2196,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 94,
+  "version": 98,
   "weekStart": ""
 }
