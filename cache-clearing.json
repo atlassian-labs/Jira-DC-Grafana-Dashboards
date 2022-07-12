@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657256319038,
+  "iteration": 1657589605448,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -138,9 +138,9 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cacheManager\",name=\"flushAll\",invokerPluginKey!=\"undefined\"}[5m])",
+          "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cacheManager\",name=\"flushAll\"}[5m])",
           "interval": "",
-          "legendFormat": "{{invokerPluginKey}}",
+          "legendFormat": "{{tag_invokerPluginKey}}",
           "refId": "A"
         }
       ],
@@ -235,7 +235,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "sum by (tag_pluginKeyAtCreation) (rate(com_atlassian_jira_metrics_Count{category00=\"cache\",name=\"removeAll\",pluginKeyAtCreation!=\"undefined\"}[5m]))",
+          "expr": "sum by (tag_pluginKeyAtCreation) (rate(com_atlassian_jira_metrics_Count{category00=\"cache\",name=\"removeAll\"}[5m]))",
           "interval": "",
           "legendFormat": "{{tag_pluginKeyAtCreation}}",
           "refId": "A"
@@ -447,7 +447,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "sum by (tag_pluginKeyAtCreation) (rate(com_atlassian_jira_metrics_Count{category00=\"cachedReference\",name=\"reset\",pluginKeyAtCreation!=\"undefined\"}[5m]))",
+          "expr": "sum by (tag_pluginKeyAtCreation) (rate(com_atlassian_jira_metrics_Count{category00=\"cachedReference\",name=\"reset\"}[5m]))",
           "interval": "",
           "legendFormat": "{{tag_pluginKeyAtCreation}}",
           "refId": "A"
@@ -492,6 +492,6 @@
   "timezone": "",
   "title": "Cache clearing",
   "uid": "bi4AbQtnk",
-  "version": 38,
+  "version": 42,
   "weekStart": ""
 }

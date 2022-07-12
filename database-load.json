@@ -52,7 +52,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657523815851,
+  "iteration": 1657590102023,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -288,7 +288,9 @@
             "uid": "${query0}"
           },
           "editorMode": "code",
+          "exemplar": true,
           "expr": "com_atlassian_jira_metrics_99thPercentile{name=\"executionTime\", category00=\"db\", category01=\"core\"}",
+          "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}} - {{instance}}",
           "range": true,
           "refId": "A"
@@ -1405,6 +1407,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 66,
+  "version": 67,
   "weekStart": ""
 }
