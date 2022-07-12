@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1656995180001,
+  "iteration": 1657526850744,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -832,13 +832,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "topk(5, (sum without (instance) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) / sum without (instance) (com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\", tag_templateRenderer=\"soy\"})))",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\",tag_templateRenderer=\"soy\"}[5m])))",
           "interval": "",
           "legendFormat": "{{tag_fromPluginKey}} - {{tag_templateName}} (template)",
           "refId": "A"
         }
       ],
-      "title": "soy web panel response time (mean - cluster wide)",
+      "title": "soy web panel response time (mean of last 5 minutes - cluster wide) ",
       "type": "timeseries"
     },
     {
@@ -1199,13 +1199,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "topk(5, (sum without (instance) (com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"velocity\"}) / sum without (instance) (com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\", tag_templateRenderer=\"velocity\"})))",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{name=\"webTemplateRenderer\",tag_templateRenderer=\"velocity\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\",tag_templateRenderer=\"velocity\"}[5m])))) /\n(sum without (instance) (delta(com_atlassian_jira_metrics_Count{name=\"webTemplateRenderer\",tag_templateRenderer=\"velocity\"}[5m])))",
           "interval": "",
           "legendFormat": "{{tag_fromPluginKey}} - {{tag_templateName}} (template)",
           "refId": "A"
         }
       ],
-      "title": "velocity web panel response time (mean - cluster wide)",
+      "title": "velocity web panel response time (mean of last 5 minutes - cluster wide) ",
       "type": "timeseries"
     },
     {
@@ -1776,14 +1776,14 @@
             "type": "prometheus",
             "uid": "${query0}"
           },
-          "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{category00=\"http\", category01=\"rest\", name=\"request\"})",
+          "exemplar": false,
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{category00=\"http\", category01=\"rest\", name=\"request\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"http\", category01=\"rest\", name=\"request\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{category00=\"http\", category01=\"rest\", name=\"request\"}[5m])))",
           "interval": "",
           "legendFormat": "{{tag_fromPluginKey}} - {{tag_path}} (path)",
           "refId": "A"
         }
       ],
-      "title": "http rest request time (mean - cluster wide)",
+      "title": "http rest request time (mean of last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -2074,13 +2074,13 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{category00=\"http\", category01=\"sal\", name=\"request\"})",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{category00=\"http\", category01=\"sal\", name=\"request\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"http\", category01=\"sal\", name=\"request\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{category00=\"http\", category01=\"sal\", name=\"request\"}[5m])))\n",
           "interval": "",
-          "legendFormat": "{{tag_fromPluginKey}} - {{tag_path}} (path)",
+          "legendFormat": "{{tag_fromPluginKey}} - {{tag_path}} {(path)}",
           "refId": "A"
         }
       ],
-      "title": "http SAL request time (mean - cluster wide)",
+      "title": "http SAL request time (mean of last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -2181,7 +2181,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -2217,6 +2217,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 64,
+  "version": 65,
   "weekStart": ""
 }
