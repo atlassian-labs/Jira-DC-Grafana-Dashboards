@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657517099696,
+  "iteration": 1657596879084,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -215,14 +215,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -276,7 +276,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "topk(10, sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_statistic=\"active\"}))",
+          "expr": "sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_statistic=\"active\"})",
           "interval": "",
           "legendFormat": "{{tag_pluginKeyAtCreation}} ",
           "refId": "A"
@@ -312,14 +312,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -373,7 +373,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "topk(10, sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"waited\",tag_statistic=\"active\"}))",
+          "expr": "sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"waited\",tag_statistic=\"active\"})",
           "interval": "",
           "legendFormat": "{{tag_pluginKeyAtCreation}}",
           "refId": "A"
@@ -508,7 +508,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "avg by (tag_lockName, tag_pluginKeyAtCreation) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"held\"})",
+          "expr": "sum by (tag_lockName, tag_pluginKeyAtCreation) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"held\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -522,7 +522,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "avg by (tag_lockName, tag_pluginKeyAtCreation)  (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"held\"})",
+          "expr": "max by (tag_lockName, tag_pluginKeyAtCreation)  (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"held\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -553,9 +553,9 @@
             },
             "indexByName": {},
             "renameByName": {
-              "Value #A": "Avg*",
+              "Value #A": "Avg* time",
               "Value #B": "Count",
-              "Value #C": "99th Percentile",
+              "Value #C": "99th Percentile time",
               "tag_lockName": "lock name",
               "tag_pluginKeyAtCreation": "plugin key"
             }
@@ -690,7 +690,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "avg by (tag_lockName, tag_pluginKeyAtCreation) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"waited\"})",
+          "expr": "sum by (tag_lockName, tag_pluginKeyAtCreation) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"waited\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -704,7 +704,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "avg by (tag_lockName, tag_pluginKeyAtCreation)  (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"waited\"})",
+          "expr": "max by (tag_lockName, tag_pluginKeyAtCreation)  (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"waited\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -735,9 +735,9 @@
             },
             "indexByName": {},
             "renameByName": {
-              "Value #A": "Avg*",
+              "Value #A": "Avg* time",
               "Value #B": "Count",
-              "Value #C": "99th Percentile",
+              "Value #C": "99th Percentile time",
               "tag_lockName": "lock name",
               "tag_pluginKeyAtCreation": "plugin key"
             }
@@ -781,6 +781,6 @@
   "timezone": "",
   "title": "Cluster Locks",
   "uid": "dq5VGx2nz",
-  "version": 53,
+  "version": 64,
   "weekStart": ""
 }

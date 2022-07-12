@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657069975403,
+  "iteration": 1657596884705,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -50,12 +50,15 @@
               "viz": false
             },
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -144,7 +147,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -239,6 +242,6 @@
   "timezone": "",
   "title": "Tasks",
   "uid": "nm3K8p8nz",
-  "version": 9,
+  "version": 12,
   "weekStart": ""
 }

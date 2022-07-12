@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657017758184,
+  "iteration": 1657596881673,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -476,14 +476,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -618,14 +618,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -758,14 +758,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -859,14 +859,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1050,14 +1050,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1197,14 +1197,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1293,14 +1293,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1385,14 +1385,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1481,6 +1481,7 @@
     },
     {
       "alert": {
+        "alertRuleTags": {},
         "conditions": [
           {
             "evaluator": {
@@ -1500,6 +1501,7 @@
               ]
             },
             "reducer": {
+              "params": [],
               "type": "avg"
             },
             "type": "query"
@@ -1545,14 +1547,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1612,6 +1614,14 @@
           "refId": "A"
         }
       ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "op": "gt",
+          "value": 80,
+          "visible": true
+        }
+      ],
       "title": "Connection Pool Utilisation",
       "type": "timeseries"
     },
@@ -1641,14 +1651,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1748,14 +1758,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -1865,6 +1875,6 @@
   "timezone": "",
   "title": "General",
   "uid": "IeEDnNp7z",
-  "version": 46,
+  "version": 59,
   "weekStart": ""
 }

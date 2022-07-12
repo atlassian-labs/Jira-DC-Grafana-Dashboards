@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657591022370,
+  "iteration": 1657596877967,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -174,14 +174,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -386,14 +386,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -492,6 +492,6 @@
   "timezone": "",
   "title": "Cache clearing",
   "uid": "bi4AbQtnk",
-  "version": 45,
+  "version": 49,
   "weekStart": ""
 }

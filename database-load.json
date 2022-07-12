@@ -52,7 +52,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657590102023,
+  "iteration": 1657595449438,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -66,8 +66,101 @@
       },
       "id": 22,
       "panels": [],
-      "title": "DB Core Execution Times",
+      "title": "DB Execution Times",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "Measures how much load a plugin is putting on the database\n\nThis underpins all DB operations in Jira, which means the db.ao and the db.sal metrics here are a subset.\n\nIf a plugin triggers SQL queries that are abnormal in quantity or duration, contact the app vendor to investigate. The invokerPluginKey tag shows which plugin is doing something that results in database queries being executed.\n\nThere is an optional tag that can be enabled sql which can be used for debugging exactly what the database queries are. It’s not recommended to enable this optional tag in production, it will lead to rapidly growing memory consumption.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 30,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\nsum without (instance) ((com_atlassian_jira_metrics_Mean{name=\"executionTime\", category00=\"db\", category01=\"core\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"}[5m])))\n",
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "DB Load (last 5 minutes - cluster wide)",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -105,7 +198,7 @@
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 1
+        "y": 16
       },
       "id": 24,
       "options": {
@@ -132,7 +225,7 @@
             "uid": "${query0}"
           },
           "exemplar": false,
-          "expr": "topk(500, avg without (instance, tag_query, category00, category01) (com_atlassian_jira_metrics_Mean{name=\"executionTime\", category00=\"db\", category01=\"core\"}) )",
+          "expr": "avg without (instance, tag_query, category00, category01) (com_atlassian_jira_metrics_Mean{name=\"executionTime\", category00=\"db\", category01=\"core\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -169,7 +262,7 @@
           "refId": "C"
         }
       ],
-      "title": "DB Core Execution Response Times (Cluster Wide)",
+      "title": "DB Execution Times (Cluster Wide)",
       "transformations": [
         {
           "id": "merge",
@@ -195,10 +288,11 @@
               "tag_templateRenderer": 3
             },
             "renameByName": {
-              "Value #A": "AVG response time (ms)",
-              "Value #B": "Number of DB Core Executions",
+              "Value #A": "Avg* response time (ms)",
+              "Value #B": "Number of DB executions",
               "Value #C": "99th response time (ms)",
               "tag_fromPluginKey": "Plugin key",
+              "tag_invokerPluginKey": "Plugin Key",
               "tag_templateName": ""
             }
           }
@@ -267,7 +361,7 @@
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 1
+        "y": 16
       },
       "id": 26,
       "options": {
@@ -296,7 +390,7 @@
           "refId": "A"
         }
       ],
-      "title": "DB Core Execution Time (p99 - per node)",
+      "title": "DB Execution Time (p99 - per node)",
       "type": "timeseries"
     },
     {
@@ -326,14 +420,14 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -365,7 +459,7 @@
         "h": 14,
         "w": 12,
         "x": 0,
-        "y": 15
+        "y": 30
       },
       "id": 29,
       "isNew": false,
@@ -388,14 +482,14 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "sum without (instance, tag_entityType) (com_atlassian_jira_metrics_Count{name=\"executionTime\", category00=\"db\", category01=\"core\"})",
+          "expr": "sum without (instance, tag_entityType) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"core\", name=\"executionTime\"})",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{tag_invokerPluginKey}} - {{name}} ",
+          "legendFormat": "{{tag_invokerPluginKey}}",
           "refId": "A"
         }
       ],
-      "title": "Cumulative Count of Core DB Executions (cluster wide) ",
+      "title": "Cumulative Count of DB executions (cluster wide) ",
       "type": "timeseries"
     },
     {
@@ -459,7 +553,7 @@
         "h": 14,
         "w": 12,
         "x": 12,
-        "y": 15
+        "y": 30
       },
       "id": 28,
       "options": {
@@ -488,7 +582,7 @@
           "refId": "A"
         }
       ],
-      "title": "DB Core Execution Evaluation Times (mean last 5 minutes - cluster wide)",
+      "title": "DB Execution Times (mean last 5 minutes - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -503,7 +597,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 44
       },
       "id": 15,
       "isNew": false,
@@ -538,10 +632,10 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -577,7 +671,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 45
       },
       "id": 2,
       "isNew": false,
@@ -600,7 +694,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}[5m])))\n",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}[5m]))))\n",
           "hide": false,
           "interval": "",
           "legendFormat": "{{tag_invokerPluginKey}} - {{name}}",
@@ -637,10 +731,208 @@
             },
             "lineInterpolation": "linear",
             "lineStyle": {
-              "fill": ""
+              "fill": "solid"
             },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 45
+      },
+      "id": 31,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"}[5m])))\n",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}} - {{name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Operation times via AO EntityManager (mean last 5 minutes - cluster wide)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "Measures the total count of AO operations (create, find, delete, deleteWithSQL, get, stream, count) by the plugins.\n\nThe operation query might be long running, or the database is under load. Contact the vendor responsible and investigate if long running queries are expected.",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 5000
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 53
+      },
+      "id": 20,
+      "isNew": false,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "span": 0,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${query0}"
+          },
+          "exemplar": true,
+          "expr": "sum without (instance, tag_entityType) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{tag_invokerPluginKey}} - {{name}} ",
+          "refId": "A"
+        }
+      ],
+      "title": "Cumulative Count Using AO's EntityManager (cluster wide)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${query0}"
+      },
+      "description": "Measures how long an AO operation (create, find, delete, deleteWithSQL, get, stream, count) that uses the Entity Manager takes.\n\nThe operation query might be long running, or the database is under load. Contact the vendor responsible and investigate if long running queries are expected.",
+      "editable": false,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -676,7 +968,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 53
       },
       "id": 6,
       "isNew": false,
@@ -705,106 +997,7 @@
           "refId": "A"
         }
       ],
-      "title": "Load Using AO EntityManager (p99 - cluster wide)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${query0}"
-      },
-      "description": "Measures the total count of AO operations (create, find, delete, deleteWithSQL, get, stream, count) by the plugins.\n\nThe operation query might be long running, or the database is under load. Contact the vendor responsible and investigate if long running queries are expected.",
-      "editable": false,
-      "error": false,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": ""
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 5000
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 38
-      },
-      "id": 20,
-      "isNew": false,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "span": 0,
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${query0}"
-          },
-          "exemplar": true,
-          "expr": "sum without (instance, tag_entityType) (com_atlassian_jira_metrics_Count{category00=\"db\", category01=\"ao\", category02=\"entityManager\"})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{tag_invokerPluginKey}} - {{name}} ",
-          "refId": "A"
-        }
-      ],
-      "title": "Cumulative Count Using AO's EntityManager (cluster wide)",
+      "title": "Operation times via AO EntityManager (p99 - cluster wide)",
       "type": "timeseries"
     },
     {
@@ -819,7 +1012,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 61
       },
       "id": 13,
       "isNew": false,
@@ -862,7 +1055,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 47
+        "y": 62
       },
       "id": 3,
       "isNew": false,
@@ -963,7 +1156,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 47
+        "y": 62
       },
       "id": 8,
       "isNew": false,
@@ -1007,7 +1200,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 55
+        "y": 70
       },
       "id": 17,
       "isNew": false,
@@ -1050,7 +1243,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 56
+        "y": 71
       },
       "id": 18,
       "isNew": false,
@@ -1151,7 +1344,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 56
+        "y": 71
       },
       "id": 19,
       "isNew": false,
@@ -1195,7 +1388,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 79
       },
       "id": 11,
       "isNew": false,
@@ -1238,7 +1431,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 65
+        "y": 80
       },
       "id": 7,
       "isNew": false,
@@ -1339,7 +1532,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 65
+        "y": 80
       },
       "id": 9,
       "isNew": false,
@@ -1407,6 +1600,6 @@
   "timezone": "",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 67,
+  "version": 89,
   "weekStart": ""
 }
