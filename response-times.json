@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657587784710,
+  "iteration": 1657590600541,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -489,7 +489,7 @@
             "uid": "${query0}"
           },
           "exemplar": true,
-          "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{category00=\"web\", category01=\"fragment\", name=\"condition\"})",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{category00=\"web\", category01=\"fragment\", name=\"condition\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"web\", category01=\"fragment\", name=\"condition\"}[5m])))) /\n(sum without (instance) (delta(com_atlassian_jira_metrics_Count{category00=\"web\", category01=\"fragment\", name=\"condition\"}[5m])))",
           "interval": "",
           "legendFormat": "{{tag_fromPluginKey}} - {{tag_conditionClassName}} (condition)",
           "refId": "A"
@@ -2192,6 +2192,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 70,
+  "version": 71,
   "weekStart": ""
 }
