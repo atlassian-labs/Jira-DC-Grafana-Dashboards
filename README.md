@@ -12,11 +12,13 @@ To see real data in Grafana, you'll need a Promtheus-compatible server for it to
 
 ## What's Included?
 
-* `Overview dashboard` - This provides a high-level overview of your instance. It contains metrics such as CPU and Memory utilisation, as well as basic alerting e.g. Memory Utilisation is over 80% for a 5 minute duration. (Note: Database connection pool graphs will only display if a JNDI Datasource is configured)
+* `General dashboard` - This provides a high-level overview of your instance. It contains metrics such as CPU and Memory utilisation, as well as basic alerting e.g. Memory Utilisation is over 80% for a 5 minute duration. (Note: Database connection pool graphs will only display if a JNDI Datasource is configured)
 * `Cache clearing` - This provides insights into how apps are utilising their caches. It also provides insights into apps enabling/disabling as these events can result in clearing of caches.
 * `Cluster locks` - This identifies which apps are holding and waiting for specific locks.
-* `Database load` - This provides insights into how apps are querying the database through the Atlassian AO and SAL frameworks.
-* `Response times` - This shows how long apps are taking to serve requests. It includes aspects such as condition evaluation (e.g. permissions), web panel rendering and http rest request times.
+* `Database load` - This provides insights into how much Apps are utilising the database, and breakdowns if they're using the Atlassian AO and SAL APIs.
+* `Indexing` - This provides insights into how much reindexing load apps trigger, and how much time their custom fields take to index.
+* `Response times` - This shows how long apps are taking to serve or wait for requests. It includes aspects such as condition evaluation (e.g. permissions) for rendering the UI, web panel rendering for the UI, how long apps are waiting for HTTP REST requests, and how long apps are taking to serve an incoming REST request.
+* `Tasks` - This provides insights into how long some tasks from apps take to execute.
 
 ## Contributions
 
