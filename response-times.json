@@ -51,6 +51,19 @@
   "liveNow": false,
   "panels": [
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 36,
+      "panels": [],
+      "title": "Search (backed by Lucene) evaluation times",
+      "type": "row"
+    },
+    {
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -108,7 +121,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "id": 45,
       "options": {
@@ -128,27 +141,14 @@
             "uid": "u5eohEYnz"
           },
           "exemplar": true,
-          "expr": "com_atlassian_jira_metrics_Mean{category00=\"search\",name=\"index\"}",
+          "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\nsum without (instance) ((com_atlassian_jira_metrics_Mean{category00=\"search\",name=\"index\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"search\",name=\"index\"}[5m])))",
           "interval": "",
           "legendFormat": "{{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
-      "title": "Search evaluation times - (mean - cluster wide)",
+      "title": "Search load - (cluster wide)",
       "type": "timeseries"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 8
-      },
-      "id": 36,
-      "panels": [],
-      "title": "Search (backed by Lucene) evaluation times",
-      "type": "row"
     },
     {
       "datasource": {
@@ -183,10 +183,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 18,
+        "h": 8,
         "w": 12,
-        "x": 0,
-        "y": 9
+        "x": 12,
+        "y": 1
       },
       "id": 41,
       "options": {
@@ -287,6 +287,93 @@
         }
       ],
       "type": "table"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 47,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "u5eohEYnz"
+          },
+          "exemplar": true,
+          "expr": "sum without (instance) (increase(com_atlassian_jira_metrics_Count{category00=\"search\", name=\"index\"}[5m]))",
+          "interval": "",
+          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Searches count (last 5 minutes - cluster wide)",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -392,7 +479,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 18
       },
       "id": 16,
       "isNew": false,
@@ -467,7 +554,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 19
       },
       "id": 17,
       "isNew": false,
@@ -564,7 +651,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 19
       },
       "id": 6,
       "isNew": false,
@@ -601,7 +688,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 28
       },
       "id": 31,
       "panels": [],
@@ -644,7 +731,7 @@
         "h": 18,
         "w": 12,
         "x": 0,
-        "y": 38
+        "y": 29
       },
       "id": 25,
       "options": {
@@ -810,7 +897,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 38
+        "y": 29
       },
       "id": 3,
       "isNew": false,
@@ -907,7 +994,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 47
+        "y": 38
       },
       "id": 18,
       "isNew": false,
@@ -946,7 +1033,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 47
       },
       "id": 12,
       "isNew": false,
@@ -991,7 +1078,7 @@
         "h": 18,
         "w": 12,
         "x": 0,
-        "y": 57
+        "y": 48
       },
       "id": 34,
       "options": {
@@ -1177,7 +1264,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 57
+        "y": 48
       },
       "id": 13,
       "isNew": false,
@@ -1274,7 +1361,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 66
+        "y": 57
       },
       "id": 14,
       "isNew": false,
@@ -1313,7 +1400,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 75
+        "y": 66
       },
       "id": 10,
       "isNew": false,
@@ -1388,7 +1475,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 76
+        "y": 67
       },
       "id": 5,
       "isNew": false,
@@ -1485,7 +1572,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 76
+        "y": 67
       },
       "id": 19,
       "isNew": false,
@@ -1524,7 +1611,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 85
+        "y": 76
       },
       "id": 21,
       "isNew": false,
@@ -1569,7 +1656,7 @@
         "h": 26,
         "w": 12,
         "x": 0,
-        "y": 86
+        "y": 77
       },
       "id": 27,
       "options": {
@@ -1730,7 +1817,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 86
+        "y": 77
       },
       "id": 22,
       "isNew": false,
@@ -1827,7 +1914,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 95
+        "y": 86
       },
       "id": 23,
       "isNew": false,
@@ -1919,7 +2006,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 104
+        "y": 95
       },
       "id": 29,
       "options": {
@@ -1954,7 +2041,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 112
+        "y": 103
       },
       "id": 43,
       "panels": [],
@@ -2027,7 +2114,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 113
+        "y": 104
       },
       "id": 32,
       "isNew": false,
@@ -2124,7 +2211,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 113
+        "y": 104
       },
       "id": 33,
       "isNew": false,
@@ -2192,6 +2279,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 103,
+  "version": 108,
   "weekStart": ""
 }
