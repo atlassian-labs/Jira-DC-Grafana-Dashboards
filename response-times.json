@@ -46,17 +46,104 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657600195728,
+  "iteration": 1657671049619,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 45,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "u5eohEYnz"
+          },
+          "exemplar": true,
+          "expr": "com_atlassian_jira_metrics_Mean{category00=\"search\",name=\"index\"}",
+          "interval": "",
+          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "refId": "A"
+        }
+      ],
+      "title": "Search evaluation times - (mean - cluster wide)",
+      "type": "timeseries"
+    },
     {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 36,
       "panels": [],
@@ -99,7 +186,7 @@
         "h": 18,
         "w": 12,
         "x": 0,
-        "y": 1
+        "y": 9
       },
       "id": 41,
       "options": {
@@ -265,7 +352,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 1
+        "y": 9
       },
       "id": 38,
       "options": {
@@ -298,97 +385,6 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "UKZbfKl7k"
-      },
-      "description": "Measures how long it takes for a Lucene index search to take place. \n\nIf a plugin triggers searches that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the index searches using the invokerPluginKey tag ",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 10
-      },
-      "id": 36,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "UKZbfKl7k"
-          },
-          "editorMode": "code",
-          "expr": "(avg by (tag_invokerPluginKey) (com_atlassian_jira_metrics_Mean{category00=\"search\",name=\"index\"}))",
-          "legendFormat": "{{tag_invokerPluginKey}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "lucene index search evaluation times - (mean - cluster wide)",
-      "type": "timeseries"
-    },
-    {
       "collapsed": false,
       "editable": false,
       "error": false,
@@ -396,7 +392,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 27
       },
       "id": 16,
       "isNew": false,
@@ -471,7 +467,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 20
+        "y": 28
       },
       "id": 17,
       "isNew": false,
@@ -568,7 +564,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 20
+        "y": 28
       },
       "id": 6,
       "isNew": false,
@@ -605,7 +601,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 37
       },
       "id": 31,
       "panels": [],
@@ -648,7 +644,7 @@
         "h": 18,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 38
       },
       "id": 25,
       "options": {
@@ -814,7 +810,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 38
       },
       "id": 3,
       "isNew": false,
@@ -911,7 +907,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 39
+        "y": 47
       },
       "id": 18,
       "isNew": false,
@@ -950,7 +946,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 56
       },
       "id": 12,
       "isNew": false,
@@ -995,7 +991,7 @@
         "h": 18,
         "w": 12,
         "x": 0,
-        "y": 49
+        "y": 57
       },
       "id": 34,
       "options": {
@@ -1181,7 +1177,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 49
+        "y": 57
       },
       "id": 13,
       "isNew": false,
@@ -1278,7 +1274,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 58
+        "y": 66
       },
       "id": 14,
       "isNew": false,
@@ -1317,7 +1313,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 67
+        "y": 75
       },
       "id": 10,
       "isNew": false,
@@ -1392,7 +1388,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 68
+        "y": 76
       },
       "id": 5,
       "isNew": false,
@@ -1489,7 +1485,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 68
+        "y": 76
       },
       "id": 19,
       "isNew": false,
@@ -1528,7 +1524,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 77
+        "y": 85
       },
       "id": 21,
       "isNew": false,
@@ -1573,7 +1569,7 @@
         "h": 26,
         "w": 12,
         "x": 0,
-        "y": 78
+        "y": 86
       },
       "id": 27,
       "options": {
@@ -1734,7 +1730,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 78
+        "y": 86
       },
       "id": 22,
       "isNew": false,
@@ -1831,7 +1827,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 87
+        "y": 95
       },
       "id": 23,
       "isNew": false,
@@ -1923,7 +1919,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 96
+        "y": 104
       },
       "id": 29,
       "options": {
@@ -1958,7 +1954,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 104
+        "y": 112
       },
       "id": 43,
       "panels": [],
@@ -2031,7 +2027,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 105
+        "y": 113
       },
       "id": 32,
       "isNew": false,
@@ -2128,7 +2124,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 105
+        "y": 113
       },
       "id": 33,
       "isNew": false,
@@ -2196,6 +2192,6 @@
   "timezone": "",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 98,
+  "version": 103,
   "weekStart": ""
 }
