@@ -52,7 +52,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657597624268,
+  "iteration": 1657798523164,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -2387,9 +2387,9 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "Europe/Warsaw",
   "title": "Database load",
   "uid": "qqVaZU5nz",
-  "version": 136,
+  "version": 138,
   "weekStart": ""
 }

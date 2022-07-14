@@ -46,7 +46,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1657671049619,
+  "iteration": 1657798955387,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -2276,9 +2276,9 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "Europe/Warsaw",
   "title": "Response times",
   "uid": "dA8tm85nz",
-  "version": 108,
+  "version": 109,
   "weekStart": ""
 }
