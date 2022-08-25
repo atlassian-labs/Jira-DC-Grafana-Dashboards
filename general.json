@@ -680,7 +680,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "(java_lang_OperatingSystem_ProcessCpuLoad * 1000)",
@@ -820,7 +820,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "100*(jvm_memory_bytes_used{area=\"heap\"}/jvm_memory_bytes_max{area=\"heap\"})",
@@ -1156,7 +1156,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "( Catalina_ThreadPool_currentThreadCount / Catalina_ThreadPool_maxThreads) * 100",
@@ -1248,7 +1248,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "increase(Catalina_GlobalRequestProcessor_requestCount{}[5m])",
@@ -1340,7 +1340,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "increase(Catalina_GlobalRequestProcessor_errorCount{}[5m])",
@@ -1432,7 +1432,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "increase(Catalina_GlobalRequestProcessor_processingTime{}[10m]) / increase(Catalina_GlobalRequestProcessor_requestCount{}[10m])",
@@ -1520,7 +1520,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "Catalina_Manager_activeSessions",
@@ -1531,7 +1531,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "Catalina_Manager_rejectedSessions",
@@ -1686,7 +1686,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "(com_atlassian_jira_BasicDataSource_NumActive{connectionpool=\"connections\"} / com_atlassian_jira_BasicDataSource_MaxTotal{connectionpool=\"connections\"}) * 100",

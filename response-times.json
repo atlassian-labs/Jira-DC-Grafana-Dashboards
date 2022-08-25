@@ -138,7 +138,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\nsum without (instance) ((com_atlassian_jira_metrics_Mean{category00=\"search\",name=\"index\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"search\",name=\"index\"}[5m])))",
@@ -363,7 +363,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "u5eohEYnz"
+            "uid": "${query0}"
           },
           "exemplar": true,
           "expr": "sum without (instance) (increase(com_atlassian_jira_metrics_Count{category00=\"search\", name=\"index\"}[5m]))",
