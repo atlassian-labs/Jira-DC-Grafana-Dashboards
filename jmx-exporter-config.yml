@@ -19,8 +19,6 @@ rules:
     product: "jira"
 
 - pattern: '.*'
-
-blacklistObjectNames:
-
 # Prevents https://jira.atlassian.com/browse/JRASERVER-72688
+blacklistObjectNames:
 - 'com.atlassian.jira:connectionpool=connections,connection=*,name=BasicDataSource'
