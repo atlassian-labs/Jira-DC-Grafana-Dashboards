@@ -53,7 +53,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Indicates that all caches are being flushed by a plugin. This is an operation which should not be triggered by external plugins and can lead to product slowdowns\n\n \n\nDetermine who invoked this, this can be determined by the invokerPluginKey tag. Reach out to the app vendor and flag this issue to them. \n\nAdditionally, the className tag refers to the implementation of CacheManager invoked and may be helpful. ",
       "editable": false,
@@ -135,12 +135,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "rate(com_atlassian_jira_metrics_Count{category00=\"cacheManager\",name=\"flushAll\"}[5m])",
           "interval": "",
-          "legendFormat": "{{tag_invokerPluginKey}}",
+          "legendFormat": "{{ instance }} {{tag_invokerPluginKey}}",
           "refId": "A"
         }
       ],
@@ -150,7 +150,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Indicates that a single cache has all of its entries removed. This may or may not cause slowdowns in products or plugins. \n\nCheck the frequency at which these cache removals occur and from which product. You can find out what plugin created the cache using the pluginKeyAtCreation tag. Additionally, the className tag refers to the implementation of Cache, which may be helpful. If the frequency is excessive, consider reaching out to the app vendor and flag this issue to them. ",
       "editable": false,
@@ -232,12 +232,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum by (tag_pluginKeyAtCreation) (rate(com_atlassian_jira_metrics_Count{category00=\"cache\",name=\"removeAll\"}[5m]))",
           "interval": "",
-          "legendFormat": "{{tag_pluginKeyAtCreation}}",
+          "legendFormat": "{{ instance }} {{tag_pluginKeyAtCreation}}",
           "refId": "A"
         }
       ],
@@ -247,7 +247,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measure how many times a plugin has been disabled/enabled since uptime.\n\nSome caches are cleared when plugin is disabled/ enabled and this may have a short term performance impact. To understand what has been disabled/enabled, check the Universal Plugin Manager audit logs.\nhttps://confluence.atlassian.com/upm/viewing-installed-apps-273875714.html",
       "editable": false,
@@ -330,7 +330,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"plugin\",name=\"counter\",category01=\"enabled\"})",
@@ -345,7 +345,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"plugin\",name=\"counter\",category01=\"disabled\"})",
@@ -362,7 +362,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Indicates that a single entry in a cache has been reset. This may or may not cause slowdowns in products or plugins. \n\nCheck the frequency at which these cache resets occur and from which product. You can find out what plugin created the cache using the pluginKeyAtCreation tag. Additionally, the className tag refers to the implementation of CacedReference, which may be helpful. If the frequency is excessive, consider reaching out to the app vendor and flag this issue to them. ",
       "editable": false,
@@ -444,12 +444,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum by (tag_pluginKeyAtCreation) (rate(com_atlassian_jira_metrics_Count{category00=\"cachedReference\",name=\"reset\"}[5m]))",
           "interval": "",
-          "legendFormat": "{{tag_pluginKeyAtCreation}}",
+          "legendFormat": "{{ instance }} {{tag_pluginKeyAtCreation}}",
           "refId": "A"
         }
       ],
@@ -460,20 +460,22 @@
   "refresh": "",
   "schemaVersion": 34,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "jira"
+  ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
-          "text": "Blitz",
-          "value": "Blitz"
+          "text": "default",
+          "value": "default"
         },
         "hide": 0,
         "includeAll": false,
-        "label": "Datasource",
+        "label": "Data Source",
         "multi": false,
-        "name": "query0",
+        "name": "datasource",
         "options": [],
         "query": "prometheus",
         "queryValue": "",
@@ -485,13 +487,12 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Cache clearing",
-  "uid": "bi4AbQtnk",
-  "version": 49,
+  "title": "Jira Cache Clearing",
+  "version": 1,
   "weekStart": ""
 }
