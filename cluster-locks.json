@@ -53,7 +53,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long a database cluster lock was held for. Used by Jira in a clustered environment.\n\nLock contention can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue. It maybe normal to have a thread holding onto a lock for a long time, if there aren’t any threads waiting for the lock - see db.cluster.lock.waited.duration to find out if there are any threads waiting for the lock.",
       "editable": false,
@@ -107,7 +107,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum without (instance,tag_pluginKeyAtCreation,tag_implementation,tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_statistic=\"active\"})",
@@ -122,7 +122,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long a database cluster lock was held for. Used by Jira in a clustered environment.\n\nLock contention can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue. It maybe normal to have a thread holding onto a lock for a long time, if there aren’t any threads waiting for the lock - see db.cluster.lock.waited.duration to find out if there are any threads waiting for the lock.",
       "editable": false,
@@ -176,7 +176,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum without (instance,tag_pluginKeyAtCreation,tag_implementation,tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_statistic=\"active\"})",
@@ -191,7 +191,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long a database cluster lock was held for. Used by Jira in a clustered environment.\n\nLock contention can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue. It maybe normal to have a thread holding onto a lock for a long time, if there aren’t any threads waiting for the lock - see db.cluster.lock.waited.duration to find out if there are any threads waiting for the lock.",
       "editable": false,
@@ -273,7 +273,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_statistic=\"active\"})",
@@ -288,7 +288,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long a database cluster lock was waited for. Used by Jira in a clustered environment.\n\nIf there many threads waiting for the same lock, it can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue.",
       "editable": false,
@@ -370,7 +370,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"waited\",tag_statistic=\"active\"})",
@@ -385,7 +385,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "* Average heavily weights timers from the last 5 minutes\n\nMeasures how long a database cluster lock was held for. Used by Jira in a clustered environment.\n\nIf there many threads waiting for the same lock, it can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue.",
       "fieldConfig": {
@@ -491,7 +491,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "avg by (tag_lockName, tag_pluginKeyAtCreation) (com_atlassian_jira_metrics_Mean{category00=\"cluster\",category01=\"lock\",category02=\"held\"})",
@@ -505,7 +505,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "sum by (tag_lockName, tag_pluginKeyAtCreation) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"held\"})",
@@ -519,7 +519,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "max by (tag_lockName, tag_pluginKeyAtCreation)  (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"held\"})",
@@ -567,7 +567,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "* Average heavily weights timers from the last 5 minutes\nMeasures how long a database cluster lock was waited for. Used by Jira in a clustered environment.\n\nIf there many threads waiting for the same lock, it can lead to performance degradation. Contact the vendor responsible to flag and investigate the issue.",
       "fieldConfig": {
@@ -673,7 +673,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "avg by (tag_lockName, tag_pluginKeyAtCreation) (com_atlassian_jira_metrics_Mean{category00=\"cluster\",category01=\"lock\",category02=\"waited\"})",
@@ -687,7 +687,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "sum by (tag_lockName, tag_pluginKeyAtCreation) (com_atlassian_jira_metrics_Count{category00=\"cluster\",category01=\"lock\",category02=\"waited\"})",
@@ -701,7 +701,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "max by (tag_lockName, tag_pluginKeyAtCreation)  (com_atlassian_jira_metrics_99thPercentile{category00=\"cluster\",category01=\"lock\",category02=\"waited\"})",
