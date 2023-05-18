@@ -1004,7 +1004,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "UKZbfKl7k"
+        "uid": "$datasource"
       },
       "editable": false,
       "error": false,
@@ -1587,7 +1587,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "UKZbfKl7k"
+        "uid": "$datasource"
       },
       "editable": false,
       "error": false,
@@ -2170,7 +2170,7 @@
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "UKZbfKl7k"
+        "uid": "$datasource"
       },
       "editable": false,
       "error": false,
