@@ -278,7 +278,7 @@
           "exemplar": true,
           "expr": "sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"held\",tag_statistic=\"active\"})",
           "interval": "",
-          "legendFormat": "{{tag_pluginKeyAtCreation}} ",
+          "legendFormat": "{{ instance }} {{tag_pluginKeyAtCreation}} ",
           "refId": "A"
         }
       ],
@@ -375,7 +375,7 @@
           "exemplar": true,
           "expr": "sum without(instance,implementation, tag_lockName) (com_atlassian_jira_metrics_Value{category00=\"cluster\",category01=\"lock\",category02=\"waited\",tag_statistic=\"active\"})",
           "interval": "",
-          "legendFormat": "{{tag_pluginKeyAtCreation}}",
+          "legendFormat": "{{ instance }} {{tag_pluginKeyAtCreation}}",
           "refId": "A"
         }
       ],
@@ -756,14 +756,14 @@
       {
         "current": {
           "selected": false,
-          "text": "Blitz",
-          "value": "Blitz"
+          "text": "default",
+          "value": "default"
         },
         "hide": 0,
         "includeAll": false,
-        "label": "Datasource",
+        "label": "Data Source",
         "multi": false,
-        "name": "query0",
+        "name": "datasource",
         "options": [],
         "query": "prometheus",
         "refresh": 1,
@@ -774,13 +774,12 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Cluster Locks",
-  "uid": "dq5VGx2nz",
-  "version": 65,
+  "title": "Jira Cluster Locks",
+  "version": 1,
   "weekStart": ""
 }
