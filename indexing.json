@@ -42,7 +42,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long it takes for an Issue to be reindexed across the cluster\n\nIf a plugin triggers Issue reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Issue reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
@@ -119,7 +119,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{name=\"ReIndex\", category00=\"issue\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"ReIndex\", category00=\"issue\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{name=\"ReIndex\", category00=\"issue\"}[5m])))\n",
@@ -134,7 +134,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long it takes for a Comment to be reindexed by a plugin.\n\n\t\nIf a plugin triggers Comment reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Comment reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
@@ -212,12 +212,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{category00=\"comment\", name=\"reindexing\"}) * \n(delta(com_atlassian_jira_metrics_Count{category00=\"comment\", name=\"reindexing\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{category00=\"comment\", name=\"reindexing\"}[5m])))",
           "interval": "",
-          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "legendFormat": " {{ instance }} {{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
@@ -227,7 +227,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long it takes on average for Issues to be reindexed across the cluster.\n\nIf a plugin triggers Issue reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Issue reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
@@ -305,12 +305,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance, tag_entityType) ((com_atlassian_jira_metrics_Mean{name=\"reindexing\", category00=\"issue\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"reindexing\", category00=\"issue\"}[5m])))) /\n(sum without (instance, tag_entityType) (delta(com_atlassian_jira_metrics_Count{name=\"reindexing\", category00=\"issue\"}[5m])))",
           "interval": "",
-          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "legendFormat": " {{ instance }} {{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
@@ -320,7 +320,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long it takes for a Comment to be reindexed by a plugin.\n\n\t\nIf a plugin triggers Comment reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Comment reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
@@ -398,12 +398,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "com_atlassian_jira_metrics_99thPercentile{category00=\"comment\", name=\"reindexing\"}",
           "interval": "",
-          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "legendFormat": " {{ instance }} {{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
@@ -413,7 +413,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long it takes for a Comment to be reindexed by a plugin.\n\n\t\nIf a plugin triggers Comment reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Comment reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
@@ -491,12 +491,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "avg without (instance) (com_atlassian_jira_metrics_Count{category00=\"comment\", name=\"reindexing\"})",
           "interval": "",
-          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "legendFormat": " {{ instance }} {{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
@@ -507,7 +507,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long it takes for an Issue to be reindexed per node\n\nIf a plugin triggers Issue reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Issue reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
@@ -585,12 +585,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "com_atlassian_jira_metrics_99thPercentile{category00=\"issue\", name=\"reindexing\"}",
           "interval": "",
-          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "legendFormat": " {{ instance }} {{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
@@ -600,7 +600,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long it takes for an Issue to be reindexed across the cluster\n\nIf a plugin triggers Issue reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Issue reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
@@ -678,12 +678,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{category00=\"issue\", name=\"reindexing\"})",
           "interval": "",
-          "legendFormat": "{{ tag_invokerPluginKey }}",
+          "legendFormat": " {{ instance }} {{ tag_invokerPluginKey }}",
           "refId": "A"
         }
       ],
@@ -694,7 +694,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Shows how many Comment operations are currently active.\n\nIf a plugin triggers Comment reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Comment reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
@@ -743,7 +743,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum without(instance, tag_invokerPluginKey) (com_atlassian_jira_metrics_Value{category00=\"comment\", name=\"reindexing\", tag_statistic=\"active\"})",
@@ -758,7 +758,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Shows how many Issue operations are currently active.\n\nIf a plugin triggers Comment reindexing that are abnormal in quantity or duration then contact the app vendor to investigate. You can find out which plugin is responsible for the Comment reindexing using the invokerPluginKey tag.",
       "fieldConfig": {
@@ -807,7 +807,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum without(instance, tag_invokerPluginKey) (com_atlassian_jira_metrics_Value{category00=\"issue\", name=\"reindexing\", tag_statistic=\"active\"})",
@@ -835,7 +835,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long custom field indexing takes and it's impact on indexing in general. High indexing times means the plugin has introduced a field that is impacting the performance of Jira and should be investigated.",
       "fieldConfig": {
@@ -886,7 +886,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "avg without (instance) (com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"})\n\n",
@@ -899,7 +899,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "max without (instance) (com_atlassian_jira_metrics_99thPercentile{name=\"addIndex\", category01=\"field\"})",
@@ -946,7 +946,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long custom field indexing takes and it's impact on indexing in general. High indexing times means the plugin has introduced a field that is impacting the performance of Jira and should be investigated.",
       "fieldConfig": {
@@ -1024,12 +1024,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "# We do this because the average of averages is not the real average. We must weigh them by the count\n(sum without (instance) ((com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"}) * \n(delta(com_atlassian_jira_metrics_Count{name=\"addIndex\", category01=\"field\"}[5m])))) /\n(sum without (instance) (delta(com_atlassian_jira_metrics_Count{name=\"addIndex\", category01=\"field\"}[5m])))",
           "interval": "",
-          "legendFormat": "{{tag_fromPluginKey}} - {{tag_fieldId}} ",
+          "legendFormat": " {{ instance }} - {{tag_fromPluginKey}} - {{tag_fieldId}} ",
           "refId": "A"
         }
       ],
@@ -1039,7 +1039,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures the total accumulated indexing time per plugin by summing all the custom fields indexing metrics. \n\nHigh indexing time needs to be investigated and flagged to the app vendor.",
       "fieldConfig": {
@@ -1117,12 +1117,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": true,
           "expr": "sum by (tag_fromPluginKey) (com_atlassian_jira_metrics_Mean{name=\"addIndex\", category01=\"field\"}) + sum by (tag_fromPluginKey) (com_atlassian_jira_metrics_Mean{name=\"isFieldIndexableForIssue\", category01=\"field\"})",
           "interval": "",
-          "legendFormat": "{{tag_fromPluginKey}}",
+          "legendFormat": " {{ instance }} {{tag_fromPluginKey}}",
           "refId": "A"
         }
       ],
@@ -1134,20 +1134,22 @@
   "refresh": "",
   "schemaVersion": 34,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "jira"
+  ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
-          "text": "Blitz",
-          "value": "Blitz"
+          "text": "default",
+          "value": "default"
         },
         "hide": 0,
         "includeAll": false,
-        "label": "Datasource",
+        "label": "Data Source",
         "multi": false,
-        "name": "query0",
+        "name": "datasource",
         "options": [],
         "query": "prometheus",
         "queryValue": "",
@@ -1163,9 +1165,8 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "Europe/Warsaw",
-  "title": "Indexing",
-  "uid": "9v-K6L_nk",
-  "version": 42,
+  "timezone": "",
+  "title": "Jira Indexing",
+  "version": 1,
   "weekStart": ""
 }
