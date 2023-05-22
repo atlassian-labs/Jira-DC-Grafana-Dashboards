@@ -29,7 +29,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long a task in queue is taking. Generally used for email queues or specific short running task\n\nCheck the duration of the task and if it’s taking too long look for the queueName and pluginKey to identify the source then react out to app vendor to flag this issue.",
       "fieldConfig": {
@@ -106,7 +106,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "sum without (instance) (com_atlassian_jira_metrics_Count{name=\"task\"})",
@@ -121,7 +121,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${query0}"
+        "uid": "$datasource"
       },
       "description": "Measures how long the long running tasks are taking.\n\nCheck the duration of the task and if it’s taking too long, look for the taskClass and pluginKey to identify the source then react out to app vendor to flag this issue.",
       "fieldConfig": {
@@ -195,7 +195,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${query0}"
+            "uid": "$datasource"
           },
           "exemplar": false,
           "expr": "sum without (instance) (com_atlassian_jira_metrics_Value{name=\"longRunningTask\", tag_statistic=\"active\"})",
@@ -210,20 +210,22 @@
   ],
   "schemaVersion": 34,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "jira"
+  ],
   "templating": {
     "list": [
       {
         "current": {
           "selected": false,
-          "text": "Blitz",
-          "value": "Blitz"
+          "text": "default",
+          "value": "default"
         },
         "hide": 0,
         "includeAll": false,
-        "label": "Datasource",
+        "label": "Data Source",
         "multi": false,
-        "name": "query0",
+        "name": "datasource",
         "options": [],
         "query": "prometheus",
         "queryValue": "",
@@ -240,8 +242,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Tasks",
-  "uid": "nm3K8p8nz",
-  "version": 14,
+  "title": "Jira Tasks",
+  "version": 1,
   "weekStart": ""
 }
